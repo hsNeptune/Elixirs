@@ -1,4 +1,4 @@
-package hsneptune.elixirs;
+package org.hsneptune.elixirs;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

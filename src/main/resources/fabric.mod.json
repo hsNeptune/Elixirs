@@ -18,13 +18,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"hsneptune.elixirs.Elixirs"
+			"org.hsneptune.elixirs.Elixirs"
 		],
 		"fabric-datagen": [
-			"hsneptune.elixirs.ElixirsDataGenerator"
+			"org.hsneptune.elixirs.ElixirsDataGenerator"
 		],
         "client": [
-            "hsneptune.elixirs.ElixirsClient"
+			"org.hsneptune.elixirs.ElixirsClient"
         ]
 	},
 	"mixins": [

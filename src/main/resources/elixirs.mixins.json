@@ -3,7 +3,7 @@
 	"package": "hsneptune.elixirs.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"org.hsneptune.elixirs.mixin.ExampleMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
