@@ -5,7 +5,9 @@
 	"name": "Elixirs",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Me!"
+		"TheManeeter",
+		"LuckElixir",
+		"Ayan Kumbhani"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
