@@ -43,17 +43,18 @@ public abstract class TurtleMixin extends LivingEntity {
 
         switch (count) {
             case 1:
-                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 2,helmet));
-                this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 2,0));
+                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 10,helmet));
+                this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 10,1+helmet));
                 break;
             case 2:
-                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 2,1+helmet));
-                this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 2,1));
+                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 10,2+helmet));
+                this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 10,2+helmet));
                 break;
             case 3:
-                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 10,3+helmet));
-                this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 10,3));
+                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 10,3));
+                this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 10,5));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 10,1+helmet));
+                this.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 10,1));
                 break;
 
         }
