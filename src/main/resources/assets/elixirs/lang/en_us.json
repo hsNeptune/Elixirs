@@ -1,3 +1,4 @@
 {
-  "item.elixirs.serum": "Serum"
+  "item.elixirs.serum": "Serum",
+  "itemgroup.elixirs.elixir_items": "Elixir Items"
 }

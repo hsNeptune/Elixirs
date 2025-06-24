@@ -1,14 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "G",
-    " G"
-  ],
+  "category": "misc",
   "key": {
     "G": {
       "item": "minecraft:glass"
     }
   },
+  "pattern": [
+    "G ",
+    " G"
+  ],
   "result": {
     "id": "elixirs:serum",
     "count": 4
