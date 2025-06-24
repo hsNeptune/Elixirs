@@ -20,7 +20,7 @@ public class ElixirsGroup {
         Elixirs.LOGGER.info("Registering item groups for Elixirs");
         ELIXIR_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
                 Identifier.of(Elixirs.MOD_ID, "elixir_item_group"),
-                FabricItemGroup.builder().icon(() -> new ItemStack(ElixirsItems.SERUM))
+                FabricItemGroup.builder().icon(() -> new ItemStack(ElixirsItems.VIAL))
                         .entries((context, entries) -> { items.forEach(entries::add); })
                         .displayName(Text.translatable("itemgroup.elixirs.elixir_items")).build());
     }

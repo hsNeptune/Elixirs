@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "minecraft:turtle_scute"
+    }
+  },
+  "pattern": [
+    "G G",
+    "GGG",
+    "GGG"
+  ],
+  "result": {
+    "id": "elixirs:turtle_chestplate",
+    "count": 1
+  }
+}

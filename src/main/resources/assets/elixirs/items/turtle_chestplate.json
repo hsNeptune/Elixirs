@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "elixirs:item/serum"
+    "model": "elixirs:item/turtle_chestplate"
   }
 }
