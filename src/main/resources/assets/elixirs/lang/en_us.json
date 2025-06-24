@@ -1,4 +1,7 @@
 {
-  "item.elixirs.serum": "Serum",
+  "item.elixirs.vial": "Empty Vial",
+  "item.elixirs.turtle_chestplate": "Turtle Back",
+  "item.elixirs.turtle_leggings": "Turtle Pants",
+  "item.elixirs.turtle_boots": "Turtle Shoes",
   "itemgroup.elixirs.elixir_items": "Elixir Items"
 }
