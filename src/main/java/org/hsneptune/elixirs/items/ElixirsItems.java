@@ -13,7 +13,9 @@ public class ElixirsItems {
 
     public static <T extends Item> T register(String path, T item) {
         // For versions below 1.21, please replace ''Identifier.of'' with ''new Identifier''
+        ElixirsGroup.addItem(item);
         return Registry.register(Registries.ITEM, Identifier.of("elixirs", path), item);
+
     }
 
     public static void initialize() {
