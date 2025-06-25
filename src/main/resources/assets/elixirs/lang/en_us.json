@@ -1,7 +1,12 @@
 {
   "item.elixirs.vial": "Empty Vial",
+  "potions.elixirs.water_vial": "Full Vial",
+  "potions.elixirs.awkward_vial": "Awkward Vial",
+  "item.elixirs.potent_dust": "Potent Dust",
+  "potions.elixirs.rage_serum_3m": "Rage Serum",
   "item.elixirs.turtle_chestplate": "Turtle Back",
   "item.elixirs.turtle_leggings": "Turtle Pants",
   "item.elixirs.turtle_boots": "Turtle Shoes",
+  "effect.elixirs.rage": "Rage",
   "itemgroup.elixirs.elixir_items": "Elixir Items"
 }

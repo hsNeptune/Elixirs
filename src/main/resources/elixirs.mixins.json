@@ -3,7 +3,12 @@
 	"package": "org.hsneptune.elixirs.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"BrewingRecipeRegistryMixin",
+		"BrewingStandBlockEntityMixin",
 		"ExampleMixin",
+		"PotionSlotMixin",
+		"RageFovMixin",
+		"RageMixin",
 		"TurtleMixin"
 	],
 	"injectors": {
