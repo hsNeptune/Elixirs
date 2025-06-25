@@ -13,6 +13,7 @@ import net.minecraft.util.Identifier;
 import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.items.ElixirsItems;
 import net.minecraft.recipe.BrewingRecipeRegistry;
+import org.hsneptune.elixirs.items.VialElixirs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,21 @@ public class ElixirsEffects {
         CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
                 ElixirsItems.AWKWARD_VIAL,
                 Items.BLAZE_POWDER,
-                ElixirsItems.RAGE_SERUM_THREE_MINUTES
+                VialElixirs.RAGE_SERUM_3M
         ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                VialElixirs.RAGE_SERUM_3M,
+                Items.GLOWSTONE_DUST,
+                VialElixirs.RAGE_SERUM_1M
+        ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                VialElixirs.RAGE_SERUM_3M,
+                Items.REDSTONE,
+                VialElixirs.RAGE_SERUM_8M
+        ));
+
 
         CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
                 ElixirsItems.WATER_VIAL,

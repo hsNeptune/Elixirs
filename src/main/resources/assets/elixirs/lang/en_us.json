@@ -8,5 +8,6 @@
   "item.elixirs.turtle_leggings": "Turtle Pants",
   "item.elixirs.turtle_boots": "Turtle Shoes",
   "effect.elixirs.rage": "Rage",
-  "itemgroup.elixirs.elixir_items": "Elixir Items"
+  "itemgroup.elixirs.elixir_items": "Elixir Items",
+  "block.elixirs.potent_ore": "Potent Ore"
 }
