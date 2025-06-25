@@ -18,17 +18,36 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+import org.hsneptune.elixirs.effects.ElixirsEffects;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VialElixirs extends PotionItem {
     private final List<RegistryEntry<StatusEffect>> effects = new ArrayList<>();
     private final List<Integer> durations = new ArrayList<>();
     private final List<Integer> amplifiers = new ArrayList<>();
     private final List<Formatting> colors = new ArrayList<>();
+    private final Map<String, Formatting> lines = new HashMap<String, Formatting>(){};
     private final boolean isEffect;
     private final String id;
+
+    public static final Item RAGE_SERUM_3M = ElixirsItems.register("rage_serum_3m", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum_3m")
+            .addEffect(ElixirsEffects.RAGE, 1200*3, 0, Formatting.RED)
+            .addLine("x2 Damage Bonus", Formatting.BLUE))
+            .addLine("x0.5 Damage Resistance", Formatting.RED);
+
+    public static final Item RAGE_SERUM_8M = ElixirsItems.register("rage_serum_8m", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum_3m")
+                    .addEffect(ElixirsEffects.RAGE, 1200*8, 0, Formatting.RED)
+                    .addLine("x2 Damage Bonus", Formatting.BLUE))
+            .addLine("x0.5 Damage Resistance", Formatting.RED);
+
+    public static final Item RAGE_SERUM_1M = ElixirsItems.register("rage_serum_1m", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum_3m")
+                    .addEffect(ElixirsEffects.RAGE, 1200, 1, Formatting.RED)
+                    .addLine("x3 Damage Bonus", Formatting.BLUE))
+            .addLine("x0.33 Damage Resistance", Formatting.RED);
 
 
     public VialElixirs(Settings settings, boolean isEffect, String id) {
@@ -46,6 +65,11 @@ public class VialElixirs extends PotionItem {
         durations.add(durationTicks);
         amplifiers.add(amplifier);
         colors.add(color);
+        return this;
+    }
+
+    public VialElixirs addLine(String string, Formatting color) {
+        lines.put(string, color);
         return this;
     }
 
@@ -82,6 +106,13 @@ public class VialElixirs extends PotionItem {
                 String durationText = formatDuration(durationTicks);
 
                 tooltip.add(Text.literal(effectName + " " + ampText + " (" + durationText + ")").formatted(color));
+            }
+
+            tooltip.add(Text.literal(""));
+            tooltip.add(Text.literal("When Applied:").formatted(Formatting.DARK_PURPLE));
+
+            for (Map.Entry<String, Formatting> entry : lines.entrySet()) {
+                tooltip.add(Text.literal(entry.getKey()).formatted(entry.getValue()));
             }
         } else {
             tooltip.add(Text.literal("No Effects").formatted(Formatting.GRAY));

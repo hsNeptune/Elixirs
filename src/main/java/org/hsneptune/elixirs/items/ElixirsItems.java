@@ -20,8 +20,7 @@ public class ElixirsItems {
     public static final Item WATER_VIAL = register("water_vial", new VialElixirs(new Item.Settings().maxCount(1), false, "water_vial"));
     public static final Item AWKWARD_VIAL = register("awkward_vial", new VialElixirs(new Item.Settings().maxCount(1), false, "awkward_vial"));
     public static final Item POTENT_DUST = register("potent_dust", new Item(new Item.Settings()));
-    public static final Item RAGE_SERUM_THREE_MINUTES = register("rage_serum_3m", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum_3m")
-            .addEffect(ElixirsEffects.RAGE, 1200*3, 0, Formatting.RED));
+
 
     public static <T extends Item> T register(String path, T item) {
         // For versions below 1.21, please replace ''Identifier.of'' with ''new Identifier''
@@ -32,11 +31,7 @@ public class ElixirsItems {
 
 
 
-    public static <T extends ArmorMaterial> T registerArmorMat(String path, T material) {
-        // For versions below 1.21, please replace ''Identifier.of'' with ''new Identifier''
-        return Registry.register(Registries.ARMOR_MATERIAL, Identifier.of("elixirs", path), material);
 
-    }
 
     public static void initialize() {
         TurtleArmor.initialize();

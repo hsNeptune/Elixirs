@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "elixirs:block/potent_ore" }
+  }
+}

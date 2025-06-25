@@ -3,6 +3,7 @@ package org.hsneptune.elixirs;
 import net.fabricmc.api.ModInitializer;
 
 import org.hsneptune.elixirs.armor.turtle.TurtleArmor;
+import org.hsneptune.elixirs.blocks.ElixirsBlocks;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.hsneptune.elixirs.items.ElixirsGroup;
 import org.hsneptune.elixirs.items.ElixirsItems;
@@ -24,6 +25,7 @@ public class Elixirs implements ModInitializer {
 		// Proceed with mild caution.
 		ElixirsItems.initialize();
 		ElixirsEffects.initialize();
+		ElixirsBlocks.initialize();
 		ElixirsGroup.registerItemGroup();
 
 		LOGGER.info("Hello Fabric world!");
