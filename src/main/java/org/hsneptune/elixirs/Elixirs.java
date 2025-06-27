@@ -2,11 +2,13 @@ package org.hsneptune.elixirs;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.world.World;
 import org.hsneptune.elixirs.armor.turtle.TurtleArmor;
 import org.hsneptune.elixirs.blocks.ElixirsBlocks;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.hsneptune.elixirs.items.ElixirsGroup;
 import org.hsneptune.elixirs.items.ElixirsItems;
+import org.hsneptune.elixirs.worldgen.Worldgen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +28,7 @@ public class Elixirs implements ModInitializer {
 		ElixirsItems.initialize();
 		ElixirsEffects.initialize();
 		ElixirsBlocks.initialize();
+		Worldgen.initialize();
 		ElixirsGroup.registerItemGroup();
 
 		LOGGER.info("Hello Fabric world!");
