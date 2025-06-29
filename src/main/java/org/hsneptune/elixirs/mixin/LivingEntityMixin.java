@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(LivingEntity.class)
-public abstract class RageMixin {
+public abstract class LivingEntityMixin {
 
     @Shadow public abstract boolean hasStatusEffect(RegistryEntry<StatusEffect> effect);
 
@@ -44,4 +44,8 @@ public abstract class RageMixin {
 
         return modifiedAmount;
     }
+
+
+
+
 }

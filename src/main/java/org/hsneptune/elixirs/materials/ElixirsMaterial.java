@@ -34,7 +34,7 @@ public class ElixirsMaterial {
         return RegistryEntry.of(material);
     }
 
-    public static <T extends ArmorMaterial> T registerArmorMat(String path, T material) {
+    public static ArmorMaterial registerArmorMat(String path, ArmorMaterial material) {
         // For versions below 1.21, please replace ''Identifier.of'' with ''new Identifier''
         return Registry.register(Registries.ARMOR_MATERIAL, Identifier.of("elixirs", path), material);
 

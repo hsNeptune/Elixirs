@@ -34,9 +34,9 @@ public class TurtleArmor {
             // Turtle is NOT dyeable, so we will pass false.
             false);
     public static final int TURTLE_DURABILITY_MULTIPLIER = 25;
-    public static final Item TURTLE_CHESTPLATE = ElixirsItems.register("turtle_chestplate", new ArmorItem(TURTLE, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(25))));
-    public static final Item TURTLE_LEGGINGS = ElixirsItems.register("turtle_leggings", new ArmorItem(TURTLE, ArmorItem.Type.LEGGINGS, new Item.Settings().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(25))));
-    public static final Item TURTLE_BOOTS = ElixirsItems.register("turtle_boots", new ArmorItem(TURTLE, ArmorItem.Type.BOOTS, new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(25))));
+    public static final Item TURTLE_CHESTPLATE = ElixirsItems.register("turtle_chestplate", new ArmorItem(TURTLE, ArmorItem.Type.CHESTPLATE, (new Item.Settings()).maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(25))));
+    public static final Item TURTLE_LEGGINGS = ElixirsItems.register("turtle_leggings", new ArmorItem(TURTLE, ArmorItem.Type.LEGGINGS, (new Item.Settings()).maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(25))));
+    public static final Item TURTLE_BOOTS = ElixirsItems.register("turtle_boots", new ArmorItem(TURTLE, ArmorItem.Type.BOOTS, (new Item.Settings()).maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(25))));
 
 
     public static void initialize() {

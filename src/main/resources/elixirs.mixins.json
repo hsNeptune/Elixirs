@@ -6,9 +6,10 @@
 		"BrewingRecipeRegistryMixin",
 		"BrewingStandBlockEntityMixin",
 		"ExampleMixin",
+		"LivingEntityMixin",
+		"PlayerEntityMixin",
 		"PotionSlotMixin",
 		"RageFovMixin",
-		"RageMixin",
 		"TurtleMixin"
 	],
 	"injectors": {

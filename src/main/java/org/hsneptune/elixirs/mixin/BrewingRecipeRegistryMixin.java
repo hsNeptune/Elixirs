@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static org.hsneptune.elixirs.effects.ElixirsEffects.ELIXIRS_INGREDIENTS;
 
 @Mixin(BrewingRecipeRegistry.class)
-public class BrewingRecipeRegistryMixin {
+public abstract class BrewingRecipeRegistryMixin {
 
     @Inject(method = "craft", at = @At("HEAD"), cancellable = true)
     private void injectCustomCraft(ItemStack ingredient, ItemStack input, CallbackInfoReturnable<ItemStack> cir) {
