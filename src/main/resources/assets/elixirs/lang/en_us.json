@@ -13,5 +13,8 @@
   "block.elixirs.potent_ore": "Potent Ore",
   "text.elixirs.default": "No Effects",
   "text.elixirs.when_applied": "When Applied:",
-  "effect.elixirs.starry": "Starry"
+  "effect.elixirs.starry": "Starry",
+  "potions.elixirs.damage_affinity": "Damage Affinity Serum",
+  "text.elixirs.resistance": "Resistance",
+  "text.elixirs.weakness": "Weaknesses"
 }

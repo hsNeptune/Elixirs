@@ -1,19 +1,15 @@
 package org.hsneptune.elixirs.effects;
 
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
-import net.minecraft.block.entity.BrewingStandBlockEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.potion.Potions;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.items.ElixirsItems;
-import net.minecraft.recipe.BrewingRecipeRegistry;
 import org.hsneptune.elixirs.items.VialElixirs;
 
 import java.util.ArrayList;
@@ -25,6 +21,8 @@ public class ElixirsEffects {
     public static final RegistryEntry<StatusEffect> RAGE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "rage"), new RageEffect());
     public static final RegistryEntry<StatusEffect> STARRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "starry"),
             new ExpIncreaseEffect());
+    public static final RegistryEntry<StatusEffect> MEELE_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "melee_affinity"), new MeleeAffinity());
+
     public static final List<ElixirItemRecipe> CUSTOM_ITEM_RECIPES = new ArrayList<>();
     public static final List<Item> ELIXIRS_INGREDIENTS = new ArrayList<>();
 
@@ -40,6 +38,25 @@ public class ElixirsEffects {
                 ElixirsItems.AWKWARD_VIAL,
                 Items.EXPERIENCE_BOTTLE,
                 VialElixirs.STARRY_SERUM_3M
+        ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                VialElixirs.STARRY_SERUM_3M,
+                Items.GLOWSTONE_DUST,
+                VialElixirs.STARRY_SERUM_EFFECTIVE
+        ));
+
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                VialElixirs.STARRY_SERUM_3M,
+                Items.REDSTONE,
+                VialElixirs.STARRY_SERUM_8M
+        ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                    VialElixirs.STARRY_SERUM_EFFECTIVE,
+                    POTENT_DUST,
+                    VialElixirs.STARRY_SERUM_SUPER_EFFECTIVE
         ));
 
         CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(

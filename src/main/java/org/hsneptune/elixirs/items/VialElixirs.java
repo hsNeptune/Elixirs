@@ -1,7 +1,5 @@
 package org.hsneptune.elixirs.items;
 
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -10,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.potion.Potion;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -31,6 +28,7 @@ public class VialElixirs extends PotionItem {
     private final Map<String, Style> lines = new LinkedHashMap<>();
     private final boolean isEffect;
     private final String id;
+
 
     public static final Item RAGE_SERUM_3M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
             .addEffect(ElixirsEffects.RAGE, 1200*3, 0, Formatting.RED)
@@ -78,6 +76,7 @@ public class VialElixirs extends PotionItem {
 
         this.isEffect = isEffect;
         this.id = id;
+
     }
 
 
@@ -102,6 +101,8 @@ public class VialElixirs extends PotionItem {
         lines.put(string, Style.EMPTY.withColor(color));
         return this;
     }
+
+
 
     public VialElixirs addLine(String string, int color) {
         lines.put(string, Style.EMPTY.withColor(color));
