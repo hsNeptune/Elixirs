@@ -23,6 +23,7 @@ public class ElixirsEffects {
             new ExpIncreaseEffect());
     public static final RegistryEntry<StatusEffect> MELEE_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "melee_affinity"), new MeleeAffinity());
 
+
     public static final List<ElixirItemRecipe> CUSTOM_ITEM_RECIPES = new ArrayList<>();
     public static final List<Item> ELIXIRS_INGREDIENTS = new ArrayList<>();
 

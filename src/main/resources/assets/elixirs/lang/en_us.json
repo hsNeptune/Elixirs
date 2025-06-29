@@ -15,6 +15,8 @@
   "text.elixirs.when_applied": "When Applied:",
   "effect.elixirs.starry": "Starry",
   "potions.elixirs.damage_affinity": "Damage Affinity Serum",
+  "potions.elixirs.melee_affinity_serum": "Melee Affinity Serum",
+  "effect.elixirs.melee_affinity": "Melee Affinity",
   "text.elixirs.resistance": "Resistance",
   "text.elixirs.weakness": "Weaknesses"
 }
