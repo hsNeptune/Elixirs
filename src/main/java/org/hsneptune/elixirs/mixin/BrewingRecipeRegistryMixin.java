@@ -32,7 +32,6 @@ public abstract class BrewingRecipeRegistryMixin {
 
     @Inject(method = "isValidIngredient", at = @At("HEAD"), cancellable = true)
     private void allowCustomIngredient(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        System.out.println("custom ingredient list active");
         if (ELIXIRS_INGREDIENTS.contains(stack.getItem())) {
             cir.setReturnValue(true); // don't allow vials in recipes
         }
