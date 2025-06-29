@@ -1,7 +1,5 @@
 package org.hsneptune.elixirs.items;
 
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -10,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.potion.Potion;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -31,6 +28,7 @@ public class VialElixirs extends PotionItem {
     private final Map<String, Style> lines = new LinkedHashMap<>();
     private final boolean isEffect;
     private final String id;
+
 
     public static final Item RAGE_SERUM_3M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
             .addEffect(ElixirsEffects.RAGE, 1200*3, 0, Formatting.RED)
@@ -70,6 +68,20 @@ public class VialElixirs extends PotionItem {
             .addLine("+13.5% Movement Speed", Formatting.BLUE)
             .addLine("4x Experience Bonus", Formatting.BLUE)
             .addLine("+4 Experience Gained per Second", Formatting.BLUE));
+    public static final Item MELEE_AFFINITY_SERUM = ElixirsItems.register("melee_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "melee_affinity_serum")
+            .addEffect(ElixirsEffects.STARRY, (int) (1200*.5), 1, 0x8dc42f)
+            .addLine("+", Formatting.BLUE)
+            .addLine("4x Experience Bonus", Formatting.BLUE)
+            .addLine("+4 Experience Gained per Second", Formatting.BLUE));
+    public static final Item MELEE_AFFINITY_SERUM_30S = ElixirsItems.register("melee_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "melee_affinity_serum")
+            .addEffect(ElixirsEffects.MEELE_AFFINITY, (int) (1200*.5), 0, 0x8dc42f)
+            .addLine("Immunity to Melee Damage", Formatting.BLUE)
+            .addLine("Instant Death From a Projectile", Formatting.RED));
+    public static final Item MELEE_AFFINITY_SERUM_1M = ElixirsItems.register("melee_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "melee_affinity_serum")
+            .addEffect(ElixirsEffects.MEELE_AFFINITY, (int) (1200), 0, 0x8dc42f)
+            .addLine("Immunity to Melee Damage", Formatting.BLUE)
+            .addLine("Instant Death From a Projectile", Formatting.RED));
+
 
 
     public VialElixirs(Settings settings, boolean isEffect, String id) {
@@ -78,6 +90,7 @@ public class VialElixirs extends PotionItem {
 
         this.isEffect = isEffect;
         this.id = id;
+
     }
 
 
@@ -102,6 +115,8 @@ public class VialElixirs extends PotionItem {
         lines.put(string, Style.EMPTY.withColor(color));
         return this;
     }
+
+
 
     public VialElixirs addLine(String string, int color) {
         lines.put(string, Style.EMPTY.withColor(color));
