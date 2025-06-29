@@ -9,7 +9,6 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import org.hsneptune.elixirs.Elixirs;
-import org.hsneptune.elixirs.items.ElixirsItems;
 
 import java.util.List;
 import java.util.Map;
