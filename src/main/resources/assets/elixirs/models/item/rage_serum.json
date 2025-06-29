@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "elixirs:item/rage_serum_3m"
+    "layer0": "elixirs:item/rage_serum"
   }
 }
