@@ -21,7 +21,8 @@ public class ElixirsEffects {
     public static final RegistryEntry<StatusEffect> RAGE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "rage"), new RageEffect());
     public static final RegistryEntry<StatusEffect> STARRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "starry"),
             new ExpIncreaseEffect());
-    public static final RegistryEntry<StatusEffect> MEELE_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "melee_affinity"), new MeleeAffinity());
+    public static final RegistryEntry<StatusEffect> MELEE_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "melee_affinity"), new MeleeAffinity());
+
 
     public static final List<ElixirItemRecipe> CUSTOM_ITEM_RECIPES = new ArrayList<>();
     public static final List<Item> ELIXIRS_INGREDIENTS = new ArrayList<>();
