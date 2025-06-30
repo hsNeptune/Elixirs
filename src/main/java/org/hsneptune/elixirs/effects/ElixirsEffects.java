@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -33,6 +34,24 @@ public class ElixirsEffects {
                 ElixirsItems.AWKWARD_VIAL,
                 Items.BLAZE_POWDER,
                 VialElixirs.RAGE_SERUM_3M
+        ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                ElixirsItems.AWKWARD_VIAL,
+                Items.BONE,
+                ElixirsItems.DAMAGE_AFFINITY
+        ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                ElixirsItems.DAMAGE_AFFINITY,
+                Items.WOODEN_SWORD,
+                VialElixirs.MELEE_AFFINITY_SERUM_30S
+        ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                VialElixirs.MELEE_AFFINITY_SERUM_30S,
+                Items.GLOWSTONE_DUST,
+                VialElixirs.MELEE_AFFINITY_SERUM_1M
         ));
 
         CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(

@@ -8,6 +8,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.DamageTypeTags;
 import org.hsneptune.elixirs.Elixirs;
+import org.hsneptune.elixirs.effects.AffinityEffect;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.ArrayList;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -49,10 +52,15 @@ public abstract class LivingEntityMixin {
             }
         }
 
-        if ((source.isOf(DamageTypes.MOB_ATTACK) || source.isOf(DamageTypes.MOB_ATTACK_NO_AGGRO) ||
-                source.isOf(DamageTypes.PLAYER_ATTACK) || source.isOf(DamageTypes.CACTUS))) {
-            if (!source.isIn(DamageTypeTags.IS_PROJECTILE) && !self.blockedByShield(source) && self.hasStatusEffect(ElixirsEffects.MELEE_AFFINITY)){
-                Elixirs.LOGGER.info("stuff");
+        ArrayList<AffinityEffect> effects = new ArrayList<>();
+        for (StatusEffectInstance effect : self.getStatusEffects()) {
+            if (effect.getEffectType().value() instanceof AffinityEffect) {
+                effects.add((AffinityEffect) effect.getEffectType().value());
+            }
+        }
+
+        for (AffinityEffect effect : effects) {
+            if (effect.isResistant(source) && !effect.isWeak(source)) {
                 modifiedAmount = 0;
             }
         }
@@ -63,10 +71,18 @@ public abstract class LivingEntityMixin {
     @Inject(method = "damage", at = @At(value ="INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", shift = At.Shift.AFTER))
     private void applyDamages(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity self = (LivingEntity) (Object) this;
-        if (source.isIn(DamageTypeTags.IS_PROJECTILE) && !self.blockedByShield(source) && self.hasStatusEffect(ElixirsEffects.MELEE_AFFINITY)) {
-            self.setHealth(0.0f);
-        }
 
+        ArrayList<AffinityEffect> effects = new ArrayList<>();
+        for (StatusEffectInstance effect : self.getStatusEffects()) {
+            if (effect.getEffectType().value() instanceof AffinityEffect) {
+                effects.add((AffinityEffect) effect.getEffectType().value());
+            }
+        }
+        for (AffinityEffect effect : effects) {
+            if (effect.isWeak(source)) {
+                self.setHealth(0.0f);
+            }
+        }
 
     }
 
