@@ -15,13 +15,6 @@ public class MeleeAffinity extends AffinityEffect {
     }
 
 
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return true;
-    }
-
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        return true;
-    }
 
     @Override
     public boolean isResistant(DamageSource source) {

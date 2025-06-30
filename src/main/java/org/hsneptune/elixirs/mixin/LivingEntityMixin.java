@@ -63,6 +63,11 @@ public abstract class LivingEntityMixin {
             if (effect.isResistant(source) && !effect.isWeak(source)) {
                 modifiedAmount = 0;
             }
+
+            if (effect.isWeak(source)) {
+                modifiedAmount = amount;
+                break;
+            }
         }
 
         return modifiedAmount;
@@ -79,7 +84,7 @@ public abstract class LivingEntityMixin {
             }
         }
         for (AffinityEffect effect : effects) {
-            if (effect.isWeak(source)) {
+            if (effect.isWeak(source) && !self.blockedByShield(source)) {
                 self.setHealth(0.0f);
             }
         }
