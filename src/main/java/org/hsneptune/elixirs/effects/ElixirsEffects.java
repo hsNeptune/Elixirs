@@ -23,6 +23,7 @@ public class ElixirsEffects {
     public static final RegistryEntry<StatusEffect> STARRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "starry"),
             new ExpIncreaseEffect());
     public static final RegistryEntry<StatusEffect> MELEE_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "melee_affinity"), new MeleeAffinity());
+    public static final RegistryEntry<StatusEffect> PROJECTILE_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "projectile_affinity"), new ProjectileAffinity());
 
 
     public static final List<ElixirItemRecipe> CUSTOM_ITEM_RECIPES = new ArrayList<>();
@@ -50,10 +51,21 @@ public class ElixirsEffects {
 
         CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
                 VialElixirs.MELEE_AFFINITY_SERUM_30S,
-                Items.GLOWSTONE_DUST,
+                Items.REDSTONE,
                 VialElixirs.MELEE_AFFINITY_SERUM_1M
         ));
 
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                ElixirsItems.DAMAGE_AFFINITY,
+                Items.BOW,
+                VialElixirs.PROJECTILE_AFFINITY_SERUM_30S
+        ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                VialElixirs.PROJECTILE_AFFINITY_SERUM_30S,
+                Items.REDSTONE,
+                VialElixirs.PROJECTILE_AFFINITY_SERUM_1M
+        ));
         CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
                 ElixirsItems.AWKWARD_VIAL,
                 Items.EXPERIENCE_BOTTLE,

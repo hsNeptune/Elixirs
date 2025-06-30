@@ -10,7 +10,8 @@
 		"PlayerEntityMixin",
 		"PotionSlotMixin",
 		"RageFovMixin",
-		"TurtleMixin"
+		"TurtleMixin",
+        "InGameHudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

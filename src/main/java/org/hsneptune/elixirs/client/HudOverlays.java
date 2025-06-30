@@ -83,6 +83,8 @@ public class HudOverlays {
             }
         }
 
+        row = counter % 2 == 0 ? row - 1 : row;
+
         if (counter != 0) {
             context.getMatrices().push();
             context.getMatrices().translate(0, 0, 60.0D);

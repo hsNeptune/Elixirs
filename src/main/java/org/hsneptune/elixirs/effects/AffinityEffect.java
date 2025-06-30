@@ -1,12 +1,10 @@
 package org.hsneptune.elixirs.effects;
 
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
-
-import java.util.List;
+import net.minecraft.entity.LivingEntity;
 
 public abstract class AffinityEffect extends StatusEffect {
 
@@ -18,6 +16,14 @@ public abstract class AffinityEffect extends StatusEffect {
         super(category, color);
         this.resistance = resistance;
         this.weakness = weakness;
+    }
+
+    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+        return true;
+    }
+
+    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        return true;
     }
 
     public abstract boolean isResistant(DamageSource source);
