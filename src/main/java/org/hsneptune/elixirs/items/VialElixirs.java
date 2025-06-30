@@ -1,5 +1,11 @@
 package org.hsneptune.elixirs.items;
 
+import com.mojang.serialization.Codec;
+import net.minecraft.component.Component;
+import net.minecraft.component.ComponentMap;
+import net.minecraft.component.ComponentType;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.LoreComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -8,27 +14,37 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
 import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.BuiltinRegistries;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+
+import org.apache.http.NoHttpResponseException;
+import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 
 import java.util.*;
 
 public class VialElixirs extends PotionItem {
     private final List<RegistryEntry<StatusEffect>> effects = new ArrayList<>();
-    private final List<Integer> durations = new ArrayList<>();
-    private final List<Integer> amplifiers = new ArrayList<>();
+    private List<Integer> durations = new ArrayList<>();
+    private List<Integer> amplifiers = new ArrayList<>();
     private final List<Style> colors = new ArrayList<>();
     private final Map<String, Style> lines = new LinkedHashMap<>();
     private final boolean isEffect;
     private final String id;
 
+    public static final ComponentType<List<Integer>> DURATION = Registry.register(Registries.DATA_COMPONENT_TYPE,
+            Identifier.of("elixirs", "duration"), ComponentType.<List<Integer>>builder().codec(Codec.list(Codec.INT)).build());
+    public static final ComponentType<List<Integer>> AMPLIFIER = Registry.register(Registries.DATA_COMPONENT_TYPE,
+            Identifier.of("elixirs", "amplifier"), ComponentType.<List<Integer>>builder().codec(Codec.list(Codec.INT)).build());
 
     public static final Item RAGE_SERUM_3M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
             .addEffect(ElixirsEffects.RAGE, 1200*3, 0, Formatting.RED)
@@ -107,7 +123,7 @@ public class VialElixirs extends PotionItem {
         return this;
     }
 
-    public VialElixirs addLine(String string, Formatting color) {
+    public VialElixirs addLine(String string, Formatting color ) {
         lines.put(string, Style.EMPTY.withColor(color));
         return this;
     }
@@ -119,8 +135,31 @@ public class VialElixirs extends PotionItem {
         return this;
     }
 
+    public void loadFromComponents(ItemStack stack) {
+        List<Integer> durationComponents = stack.getOrDefault(DURATION, null);
+        List<Integer> amplifierComponents = stack.getOrDefault(AMPLIFIER, null);
+
+        LoreComponent lore = stack.getOrDefault(DataComponentTypes.LORE, null);
+        if (durationComponents == null || amplifierComponents == null) {
+            return;
+        }
+        this.lines.clear();
+        if (lore != null) {
+
+            for (Text loreLines : lore.lines()) {
+                this.lines.put(loreLines.getString(), loreLines.getStyle());
+            }
+
+        }
+        this.durations = durationComponents;
+        this.amplifiers = amplifierComponents;
+
+
+    }
+
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        loadFromComponents(stack);
         if (user instanceof PlayerEntity player && !player.getAbilities().creativeMode) {
             stack.decrement(1);
         }
@@ -138,30 +177,32 @@ public class VialElixirs extends PotionItem {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        if (isEffect) {
+        loadFromComponents(stack);
+        if (!isEffect) {
+            tooltip.add(Text.translatable("text.elixirs.default").formatted(Formatting.GRAY));
+            return;
+        }
 
 
-            for (int i = 0; i < effects.size(); i++) {
-                StatusEffect effect = effects.get(i).value();
-                int amplifier = amplifiers.get(i);
-                int durationTicks = durations.get(i);
-                Style color = colors.get(i);
+        for (int i = 0; i < effects.size(); i++) {
+            StatusEffect effect = effects.get(i).value();
+            int amplifier = amplifiers.get(i);
+            int durationTicks = durations.get(i);
+            Style color = colors.get(i);
 
-                String effectName = Text.translatable(effect.getTranslationKey()).getString();
-                String ampText = toRomanNumeral(amplifier + 1);
-                String durationText = formatDuration(durationTicks);
+            String effectName = Text.translatable(effect.getTranslationKey()).getString();
+            String ampText = toRomanNumeral(amplifier + 1);
+            String durationText = formatDuration(durationTicks);
 
-                tooltip.add(Text.literal(effectName + " " + ampText + " (" + durationText + ")").setStyle(color));
-            }
-
+            tooltip.add(Text.literal(effectName + " " + ampText + " (" + durationText + ")").setStyle(color));
+        }
+        
+        if (!this.lines.isEmpty()){
             tooltip.add(Text.literal(""));
             tooltip.add(Text.translatable("text.elixirs.when_applied").formatted(Formatting.DARK_PURPLE));
-
-            for (Map.Entry<String, Style> entry : lines.entrySet()) {
-                tooltip.add(Text.literal(entry.getKey()).setStyle(entry.getValue()));
-            }
-        } else {
-            tooltip.add(Text.translatable("text.elixirs.default").formatted(Formatting.GRAY));
+         }
+        for (Map.Entry<String, Style> entry : lines.entrySet()) {
+            tooltip.add(Text.literal(entry.getKey()).setStyle(entry.getValue()));
         }
     }
 
