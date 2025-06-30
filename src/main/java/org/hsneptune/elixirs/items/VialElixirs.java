@@ -1,11 +1,7 @@
 package org.hsneptune.elixirs.items;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.component.Component;
-import net.minecraft.component.ComponentMap;
 import net.minecraft.component.ComponentType;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.LoreComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -14,10 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.registry.BuiltinRegistries;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -25,12 +17,11 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-
-import org.apache.http.NoHttpResponseException;
-import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 
+import java.text.DecimalFormat;
 import java.util.*;
+import java.util.function.Function;
 
 public class VialElixirs extends PotionItem {
     private final List<RegistryEntry<StatusEffect>> effects = new ArrayList<>();
@@ -38,8 +29,12 @@ public class VialElixirs extends PotionItem {
     private List<Integer> amplifiers = new ArrayList<>();
     private final List<Style> colors = new ArrayList<>();
     private final Map<String, Style> lines = new LinkedHashMap<>();
+    private final List<Function<Integer, String>> functions = new ArrayList<>();
+    private final List<Integer> indices = new ArrayList<>();
     private final boolean isEffect;
     private final String id;
+
+    private static final DecimalFormat decimalFormat = new DecimalFormat("0.##");
 
     public static final ComponentType<List<Integer>> DURATION = Registry.register(Registries.DATA_COMPONENT_TYPE,
             Identifier.of("elixirs", "duration"), ComponentType.<List<Integer>>builder().codec(Codec.list(Codec.INT)).build());
@@ -48,51 +43,51 @@ public class VialElixirs extends PotionItem {
 
     public static final Item RAGE_SERUM_3M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
             .addEffect(ElixirsEffects.RAGE, 1200*3, 0, Formatting.RED)
-            .addLine("x2 Damage Bonus", Formatting.BLUE)
-            .addLine("x0.5 Damage Resistance", Formatting.RED));
+            .addLine("x%s Damage Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
+            .addLine("x%s Damage Resistance", Formatting.RED, s -> (float) (1.0/(s + 2)), 0));
 
     public static final Item RAGE_SERUM_8M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
-                    .addEffect(ElixirsEffects.RAGE, 1200*8, 0, Formatting.RED)
-                    .addLine("x2 Damage Bonus", Formatting.BLUE)
-            .addLine("x0.5 Damage Resistance", Formatting.RED));
+            .addEffect(ElixirsEffects.RAGE, 1200*8, 0, Formatting.RED)
+            .addLine("x%s Damage Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
+            .addLine("x%s Damage Resistance", Formatting.RED, s -> (float) (1.0/(s + 2)), 0));
 
     public static final Item RAGE_SERUM_1M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
-                    .addEffect(ElixirsEffects.RAGE, (int) (1200*1.5), 1, Formatting.RED)
-                    .addLine("x3 Damage Bonus", Formatting.BLUE)
-            .addLine("x0.33 Damage Resistance", Formatting.RED));
+            .addEffect(ElixirsEffects.RAGE, (int) (1200*1.5), 1, Formatting.RED)
+            .addLine("x%s Damage Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
+            .addLine("x%s Damage Resistance", Formatting.RED, s -> (float) (1.0/(s + 2)), 0));
 
     public static final Item STARRY_SERUM_3M = ElixirsItems.register("starry_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "starry_serum")
             .addEffect(ElixirsEffects.STARRY, 1200*3, 0, 0x8dc42f)
-            .addLine("+7.7% Movement Speed", Formatting.BLUE)
-            .addLine("2x Experience Bonus", Formatting.BLUE)
-            .addLine("+2 Experience Gained per Second", Formatting.BLUE));
+            .addLine("+%s%% Movement Speed", Formatting.BLUE, s -> 100f * (float) (Math.atan(0.1*s + 0.25) * (2 / (2*Math.PI))), 0)
+            .addLine("x%s Experience Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
+            .addLine("+%s Experience Gained per Second", Formatting.BLUE, s -> (float) s + 2, 0));
 
     public static final Item STARRY_SERUM_8M = ElixirsItems.register("starry_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "starry_serum")
             .addEffect(ElixirsEffects.STARRY, 1200*8, 0, 0x8dc42f)
-            .addLine("+7.7% Movement Speed", Formatting.BLUE)
-            .addLine("2x Experience Bonus", Formatting.BLUE)
-            .addLine("+2 Experience Gained per Second", Formatting.BLUE));
+            .addLine("+%s%% Movement Speed", Formatting.BLUE, s -> 100f * (float) (Math.atan(0.1*s + 0.25) * (2 / (2*Math.PI))), 0)
+            .addLine("x%s Experience Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
+            .addLine("+%s Experience Gained per Second", Formatting.BLUE, s -> (float) s + 2, 0));
 
     public static final Item STARRY_SERUM_EFFECTIVE = ElixirsItems.register("starry_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "starry_serum")
             .addEffect(ElixirsEffects.STARRY, (int) (1200*1.5), 1, 0x8dc42f)
-            .addLine("+10.7% Movement Speed", Formatting.BLUE)
-            .addLine("3x Experience Bonus", Formatting.BLUE)
-            .addLine("+3 Experience Gained per Second", Formatting.BLUE));
+            .addLine("+%s%% Movement Speed", Formatting.BLUE, s -> 100f * (float) (Math.atan(0.1*s + 0.25) * (2 / (2*Math.PI))), 0)
+            .addLine("x%s Experience Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
+            .addLine("+%s Experience Gained per Second", Formatting.BLUE, s -> (float) s + 2, 0));
 
     public static final Item STARRY_SERUM_SUPER_EFFECTIVE = ElixirsItems.register("starry_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "starry_serum")
             .addEffect(ElixirsEffects.STARRY, (int) (1200*.5), 2, 0x8dc42f)
-            .addLine("+13.5% Movement Speed", Formatting.BLUE)
-            .addLine("4x Experience Bonus", Formatting.BLUE)
-            .addLine("+4 Experience Gained per Second", Formatting.BLUE));
+            .addLine("+%s%% Movement Speed", Formatting.BLUE, s -> 100f * (float) (Math.atan(0.1*s + 0.25) * (2 / (2*Math.PI))), 0)
+            .addLine("x%s Experience Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
+            .addLine("+%s Experience Gained per Second", Formatting.BLUE, s -> (float) s + 2, 0));
 
     public static final Item MELEE_AFFINITY_SERUM_30S = ElixirsItems.register("melee_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "melee_affinity_serum")
             .addEffect(ElixirsEffects.MELEE_AFFINITY, (int) (1200*.5), 0, 0x1a84d3)
             .addLine("Immunity to Melee Damage", Formatting.BLUE)
-            .addLine("Instant Death From a Projectile", Formatting.RED));
+            .addLine("Instakill by Projectile", Formatting.RED));
     public static final Item MELEE_AFFINITY_SERUM_1M = ElixirsItems.register("melee_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "melee_affinity_serum")
             .addEffect(ElixirsEffects.MELEE_AFFINITY, (int) (1200), 0, 0x1a84d3)
             .addLine("Immunity to Melee Damage", Formatting.BLUE)
-            .addLine("Instant Death From a Projectile", Formatting.RED));
+            .addLine("Instakill by Projectile", Formatting.RED));
 
 
 
@@ -123,15 +118,29 @@ public class VialElixirs extends PotionItem {
         return this;
     }
 
-    public VialElixirs addLine(String string, Formatting color ) {
-        lines.put(string, Style.EMPTY.withColor(color));
-        return this;
+    public VialElixirs addLine(String string, Formatting color) {
+        return addLine(string, color.getColorValue(), s -> (float) s, 0);
+    }
+
+
+    public VialElixirs addLine(String string, int color) {
+        return addLine(string, color, s -> (float) s, 0);
     }
 
 
 
-    public VialElixirs addLine(String string, int color) {
+    public VialElixirs addLine(String string, Formatting color, Function<Integer, Float> operator, int ampIndex) {
+
+        return addLine(string, color.getColorValue(), operator, ampIndex);
+    }
+
+
+
+    private VialElixirs addLine(String string, int color, Function<Integer, Float> operator, int ampIndex) {
         lines.put(string, Style.EMPTY.withColor(color));
+        Function<Integer, String> newOperator = s -> decimalFormat.format(operator.apply(s));
+        this.functions.add(newOperator);
+        this.indices.add(ampIndex);
         return this;
     }
 
@@ -139,17 +148,8 @@ public class VialElixirs extends PotionItem {
         List<Integer> durationComponents = stack.getOrDefault(DURATION, null);
         List<Integer> amplifierComponents = stack.getOrDefault(AMPLIFIER, null);
 
-        LoreComponent lore = stack.getOrDefault(DataComponentTypes.LORE, null);
         if (durationComponents == null || amplifierComponents == null) {
             return;
-        }
-        this.lines.clear();
-        if (lore != null) {
-
-            for (Text loreLines : lore.lines()) {
-                this.lines.put(loreLines.getString(), loreLines.getStyle());
-            }
-
         }
         this.durations = durationComponents;
         this.amplifiers = amplifierComponents;
@@ -159,15 +159,16 @@ public class VialElixirs extends PotionItem {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        loadFromComponents(stack);
+        List<Integer> stackDurations = stack.getOrDefault(DURATION, this.durations);
+        List<Integer> stackAmplifiers = stack.getOrDefault(AMPLIFIER, this.amplifiers);
         if (user instanceof PlayerEntity player && !player.getAbilities().creativeMode) {
             stack.decrement(1);
         }
 
         for (int i = 0; i < effects.size(); i++) {
             RegistryEntry<StatusEffect> effect = effects.get(i);
-            int duration = durations.get(i);
-            int amplifier = amplifiers.get(i);
+            int duration = stackDurations.get(i);
+            int amplifier = stackAmplifiers.get(i);
             user.addStatusEffect(new StatusEffectInstance(effect, duration, amplifier));
         }
 
@@ -177,7 +178,8 @@ public class VialElixirs extends PotionItem {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        loadFromComponents(stack);
+        List<Integer> stackDurations = stack.getOrDefault(DURATION, this.durations);
+        List<Integer> stackAmplifiers = stack.getOrDefault(AMPLIFIER, this.amplifiers);
         if (!isEffect) {
             tooltip.add(Text.translatable("text.elixirs.default").formatted(Formatting.GRAY));
             return;
@@ -186,8 +188,8 @@ public class VialElixirs extends PotionItem {
 
         for (int i = 0; i < effects.size(); i++) {
             StatusEffect effect = effects.get(i).value();
-            int amplifier = amplifiers.get(i);
-            int durationTicks = durations.get(i);
+            int amplifier = stackAmplifiers.get(i);
+            int durationTicks = stackDurations.get(i);
             Style color = colors.get(i);
 
             String effectName = Text.translatable(effect.getTranslationKey()).getString();
@@ -201,8 +203,11 @@ public class VialElixirs extends PotionItem {
             tooltip.add(Text.literal(""));
             tooltip.add(Text.translatable("text.elixirs.when_applied").formatted(Formatting.DARK_PURPLE));
          }
+        int count = 0;
         for (Map.Entry<String, Style> entry : lines.entrySet()) {
-            tooltip.add(Text.literal(entry.getKey()).setStyle(entry.getValue()));
+
+            tooltip.add(Text.literal(String.format(entry.getKey(), this.functions.get(count).apply(stackAmplifiers.get(indices.get(count))))).setStyle(entry.getValue()));
+            count++;
         }
     }
 
