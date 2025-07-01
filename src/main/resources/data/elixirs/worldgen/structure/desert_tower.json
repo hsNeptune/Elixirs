@@ -1,6 +1,6 @@
 {
 "type": "minecraft:jigsaw",
-"start_pool": "elixirs:desert_tower_pool",
+"start_pool": "elixirs:desert_tower/start_pool",
 "biomes": "minecraft:desert",
 "step": "surface_structures",
 "terrain_adaptation": "beard_thin",
