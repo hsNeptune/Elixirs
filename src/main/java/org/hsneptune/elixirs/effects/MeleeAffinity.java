@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 
 public class MeleeAffinity extends AffinityEffect {
     public MeleeAffinity(){
-        super(StatusEffectCategory.BENEFICIAL, 0x3a3ebc,
+        super(StatusEffectCategory.BENEFICIAL, 0x1a84d3,
                 Identifier.ofVanilla("textures/item/diamond_sword.png"),
                 Identifier.ofVanilla("textures/item/bow.png"));
     }
