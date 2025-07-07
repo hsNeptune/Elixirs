@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 public class ProjectileAffinity extends AffinityEffect {
 
     public ProjectileAffinity() {
-        super(StatusEffectCategory.BENEFICIAL, 0xa428e2, Identifier.ofVanilla("textures/item/bow.png"), Identifier.ofVanilla("textures/item/diamond_sword.png"));
+        super(StatusEffectCategory.BENEFICIAL, 0xB55CE6, Identifier.ofVanilla("textures/item/bow.png"), Identifier.ofVanilla("textures/item/diamond_sword.png"));
     }
 
     public boolean isResistant(DamageSource source) {

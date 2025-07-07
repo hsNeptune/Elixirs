@@ -68,6 +68,17 @@ public class ElixirsEffects {
                 VialElixirs.PROJECTILE_AFFINITY_SERUM_1M
         ));
         CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                ElixirsItems.DAMAGE_AFFINITY,
+                Items.HEAVY_CORE,
+                VialElixirs.HEAD_AFFINITY_SERUM_30S
+        ));
+
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
+                VialElixirs.HEAD_AFFINITY_SERUM_30S,
+                Items.REDSTONE,
+                VialElixirs.HEAD_AFFINITY_SERUM_1M
+        ));
+        CUSTOM_ITEM_RECIPES.add(new ElixirItemRecipe(
                 ElixirsItems.AWKWARD_VIAL,
                 Items.EXPERIENCE_BOTTLE,
                 VialElixirs.STARRY_SERUM_3M
