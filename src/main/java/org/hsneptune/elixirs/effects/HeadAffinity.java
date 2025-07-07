@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 public class HeadAffinity extends AffinityEffect {
 
     public HeadAffinity() {
-        super(StatusEffectCategory.BENEFICIAL, 0x14C14E, Identifier.ofVanilla("textures/item/mace.png"), Identifier.ofVanilla("textures/mob_effect/slow_falling.png")); 
+        super(StatusEffectCategory.BENEFICIAL, 0xACB9C2, Identifier.ofVanilla("textures/item/mace.png"), Identifier.ofVanilla("textures/mob_effect/slow_falling.png")); 
     }
 
     @Override
