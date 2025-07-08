@@ -1,0 +1,24 @@
+{
+  "feature": "elixirs:giant_glowing_mushroom",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 16
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "absolute": -64
+        },
+        "max_inclusive": {
+          "absolute": 64
+        }
+      }
+    }
+  ]
+}

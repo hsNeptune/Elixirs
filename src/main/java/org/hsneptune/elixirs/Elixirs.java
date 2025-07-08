@@ -9,6 +9,7 @@ import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.hsneptune.elixirs.items.ElixirsGroup;
 import org.hsneptune.elixirs.items.ElixirsItems;
 import org.hsneptune.elixirs.worldgen.Worldgen;
+import org.hsneptune.elixirs.worldgen.feature.ElixirsFeatures;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import net.minecraft.block.WallBlock;
@@ -31,6 +32,7 @@ public class Elixirs implements ModInitializer {
 		ElixirsBlocks.initialize();
 		Worldgen.initialize();
 		ElixirsGroup.registerItemGroup();
+        ElixirsFeatures.initialize();
 
 		LOGGER.info("Hello Fabric world!");
 	}

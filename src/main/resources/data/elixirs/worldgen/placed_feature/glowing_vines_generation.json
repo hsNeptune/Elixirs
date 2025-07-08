@@ -1,0 +1,29 @@
+{
+  "feature": "elixirs:glowing_vines_generation",
+  "placement": [
+    {
+      "type": "minecraft:noise_threshold_count",
+      "noise_level": 2,
+      "below_noise": 15,
+      "above_noise": 20
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "absolute": -64
+        },
+        "max_inclusive": {
+          "absolute": 56
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

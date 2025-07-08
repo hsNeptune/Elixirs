@@ -11,7 +11,8 @@
 		"PotionSlotMixin",
 		"RageFovMixin",
 		"TurtleMixin",
-        "InGameHudMixin"
+        "InGameHudMixin",
+        "ChunkGenMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
