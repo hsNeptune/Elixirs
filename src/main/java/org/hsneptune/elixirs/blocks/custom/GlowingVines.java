@@ -4,10 +4,12 @@ import net.minecraft.block.TallPlantBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.AbstractBlock.Settings;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 
+import org.hsneptune.elixirs.ElixirsClient;
 import org.hsneptune.elixirs.blocks.ElixirsBlocks;
 
 import com.mojang.serialization.MapCodec;
@@ -21,6 +23,7 @@ public class GlowingVines extends TallPlantBlock {
 
     public GlowingVines(Settings settings) {
         super(settings.noCollision().nonOpaque());
+        ElixirsClient.addTransparentBlock(this, RenderLayer.getCutout());  
     }
     
     @Override 

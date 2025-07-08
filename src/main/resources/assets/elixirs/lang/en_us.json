@@ -25,5 +25,6 @@
   "block.elixirs.glowing_mushroom_foliage": "Glowing Mushroom Foliage",
   "effect.elixirs.melee_affinity": "Melee Affinity",
   "text.elixirs.resistance": "Resist",
-  "text.elixirs.weakness": "Weak"
+  "text.elixirs.weakness": "Weak",
+  "block.elixirs.glowing_vines": "Glowing Vines"
 }
