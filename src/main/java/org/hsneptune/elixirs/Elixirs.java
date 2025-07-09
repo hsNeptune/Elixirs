@@ -8,6 +8,7 @@ import org.hsneptune.elixirs.blocks.ElixirsBlocks;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.hsneptune.elixirs.items.ElixirsGroup;
 import org.hsneptune.elixirs.items.ElixirsItems;
+import org.hsneptune.elixirs.tag.ElixirsTags;
 import org.hsneptune.elixirs.worldgen.Worldgen;
 import org.hsneptune.elixirs.worldgen.feature.ElixirsFeatures;
 import org.slf4j.Logger;
@@ -27,6 +28,8 @@ public class Elixirs implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+    
+        ElixirsTags.initalize();
 		ElixirsItems.initialize();
 		ElixirsEffects.initialize();
 		ElixirsBlocks.initialize();

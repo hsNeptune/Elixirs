@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.items.ElixirsGroup;
 import org.hsneptune.elixirs.blocks.custom.GlowingVines;
+import net.minecraft.item.BoneMealItem;
 
 
 public class ElixirsBlocks {

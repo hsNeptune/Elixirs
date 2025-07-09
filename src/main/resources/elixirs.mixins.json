@@ -12,7 +12,8 @@
 		"RageFovMixin",
 		"TurtleMixin",
         "InGameHudMixin",
-        "ChunkGenMixin"
+        "ChunkGenMixin",
+        "BoneMealItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
