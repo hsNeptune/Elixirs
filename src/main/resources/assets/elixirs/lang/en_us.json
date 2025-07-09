@@ -16,7 +16,15 @@
   "effect.elixirs.starry": "Starry",
   "potions.elixirs.damage_affinity": "Damage Affinity Serum",
   "potions.elixirs.melee_affinity_serum": "Melee Affinity Serum",
+  "potions.elixirs.projectile_affinity_serum": "Projectile Affinity Serum",
+  "effect.elixirs.projectile_affinity": "Projectile Affinity",
+  "effect.elixirs.head_affinity": "Head Affinity",
+  "potions.elixirs.head_affinity_serum": "Head Affinity Serum",
+  "block.elixirs.glowing_mushroom_stem": "Glowing Mushroom Stem",
+  "block.elixirs.glowing_mushroom_block": "Glowing Mushroom Block",
+  "block.elixirs.glowing_mushroom_foliage": "Glowing Mushroom Foliage",
   "effect.elixirs.melee_affinity": "Melee Affinity",
   "text.elixirs.resistance": "Resist",
-  "text.elixirs.weakness": "Weak"
+  "text.elixirs.weakness": "Weak",
+  "block.elixirs.glowing_vines": "Glowing Vines"
 }

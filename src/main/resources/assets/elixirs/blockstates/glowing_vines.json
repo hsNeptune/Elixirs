@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "elixirs:block/glowing_vines_bottom"
+    },
+    "half=upper": {
+      "model": "elixirs:block/glowing_vines_top"
+    }
+  }
+}

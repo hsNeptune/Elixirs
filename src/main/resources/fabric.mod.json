@@ -25,6 +25,9 @@
 		],
         "client": [
 			"org.hsneptune.elixirs.ElixirsClient"
+        ],
+        "terrablender": [
+            "org.hsneptune.elixirs.worldgen.ElixirsTerraBlender"
         ]
 	},
 	"mixins": [

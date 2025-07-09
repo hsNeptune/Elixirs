@@ -22,7 +22,7 @@
       "options": {
         "type": "minecraft:glow"
       },
-      "probability": 0.5
+      "probability": 0.05
     }
   },
   "spawners": {
@@ -57,9 +57,22 @@
     ]
   },
   "features": [
-    [
-      "minecraft:amethyst_geode",
-      "minecraft:spring_water"
-    ]
-  ]
-}
+  [],
+  [],
+  [
+    "minecraft:amethyst_geode",
+    "elixirs:giant_glowing_mushroom"
+  ],
+  [],
+  [],
+  [],
+  [],
+  [],
+  [
+    "minecraft:spring_water"
+  ],
+  [
+      "elixirs:glowing_vines_generation"
+  ],
+  []
+]}
