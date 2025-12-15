@@ -3,6 +3,7 @@ package org.hsneptune.elixirs.effects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.server.world.ServerWorld;
 
 public class RageEffect extends StatusEffect {
     protected RageEffect() {
@@ -10,7 +11,7 @@ public class RageEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
         // This method is called every tick the effect is active.
         // We'll handle the damage multiplication in event listeners, not here.
         // However, you could put other tick-based effects here if needed.

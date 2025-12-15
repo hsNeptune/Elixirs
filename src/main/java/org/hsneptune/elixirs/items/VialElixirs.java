@@ -1,6 +1,9 @@
 package org.hsneptune.elixirs.items;
 
+import net.minecraft.item.consume.UseAction;
 import com.mojang.serialization.Codec;
+
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.component.ComponentType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -8,6 +11,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
 import net.minecraft.item.PotionItem;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
@@ -108,11 +112,18 @@ public class VialElixirs extends PotionItem {
             .addLine("Instakill by Fall Damage", Formatting.RED));
 
     public VialElixirs(Settings settings, boolean isEffect, String id) {
-
-        super(settings);
+		// wanted to define the translation key before invoking the constructor call
+		// LSP wouldn't allow it so here we are
+        super(settings.translationKey("potions.elixirs." + id));
 
         this.isEffect = isEffect;
         this.id = id;
+
+		// Should probably define the tooltip registration somewhere else, however screw it I'm done.
+		// If the tooltips are failing, check here, this code registers all of the tooltips
+		// Most probable fail is the tooltips not loading which is caused by this triggering too early
+		ItemTooltipCallback.EVENT.register(this::appendTooltip);
+		
 
     }
 
@@ -192,8 +203,7 @@ public class VialElixirs extends PotionItem {
         return new ItemStack(ElixirsItems.VIAL);
     }
 
-    @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, TooltipType type, List<Text> tooltip) {
         List<Integer> stackDurations = stack.getOrDefault(DURATION, this.durations);
         List<Integer> stackAmplifiers = stack.getOrDefault(AMPLIFIER, this.amplifiers);
         if (!isEffect) {
@@ -257,9 +267,9 @@ public class VialElixirs extends PotionItem {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    public ActionResult use(World world, PlayerEntity user, Hand hand) {
         user.setCurrentHand(hand);
-        return TypedActionResult.consume(user.getStackInHand(hand));
+        return ItemUsage.consumeHeldItem(world, user, hand);
     }
 
     @Override
@@ -267,8 +277,4 @@ public class VialElixirs extends PotionItem {
         return UseAction.DRINK;
     }
 
-    @Override
-    public String getTranslationKey(ItemStack stack) {
-        return "potions.elixirs." + this.id;
-    }
 }

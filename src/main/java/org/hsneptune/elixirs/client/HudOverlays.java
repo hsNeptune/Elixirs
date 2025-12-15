@@ -1,7 +1,9 @@
 package org.hsneptune.elixirs.client;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.util.Window;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 
 public class HudOverlays {
 
-    public static void render(DrawContext context) {
+    public static void render(DrawContext context, RenderTickCounter tickCounter) {
         MinecraftClient client = MinecraftClient.getInstance();
         PlayerEntity player = client.player;
 
@@ -51,7 +53,7 @@ public class HudOverlays {
 
     }
 
-    public static void renderAffinity(DrawContext context) {
+    public static void renderAffinity(DrawContext context, RenderTickCounter rCounter) {
         MinecraftClient client = MinecraftClient.getInstance();
         PlayerEntity player = client.player;
         if (player == null) return;
@@ -73,11 +75,11 @@ public class HudOverlays {
             Identifier resistance = effect.getResistance();
             Identifier weakness = effect.getWeakness();
 
-            context.drawTexture(resistance, width/2 - 91 - 29 - 22 - (18 * (counter % 2)), height - 22 - row * 18,
-                    50, 0f, 0f, 16, 16, 16, 16);
+            context.drawTexture(RenderPipelines.GUI, resistance, width/2 - 91 - 29 - 22 - (18 * (counter % 2)), height - 22 - row * 18,
+                     0f, 0f, 16, 16, 16, 16);
 
-            context.drawTexture(weakness, width / 2 + 91 + 29 + 4 + (18 * (counter % 2)), height - 22 - row * 18,
-                    50, 0f, 0f, 16, 16, 16, 16);
+            context.drawTexture(RenderPipelines.GUI, weakness, width / 2 + 91 + 29 + 4 + (18 * (counter % 2)), height - 22 - row * 18,
+                     0f, 0f, 16, 16, 16, 16);
             if (counter++ % 2 == 1) {
                 row++;
             }
@@ -86,8 +88,6 @@ public class HudOverlays {
         row = counter % 2 == 0 ? row - 1 : row;
 
         if (counter != 0) {
-            context.getMatrices().push();
-            context.getMatrices().translate(0, 0, 60.0D);
             int y = height - 22 - row * 18 - client.textRenderer.fontHeight;
             context.drawText(client.textRenderer, Text.translatable("text.elixirs.resistance"),
                     (width/2) - 91 - 29 - 4 - client.textRenderer.getWidth(Text.translatable("text.elixirs.resistance")),
@@ -95,7 +95,6 @@ public class HudOverlays {
             context.drawText(client.textRenderer, Text.translatable("text.elixirs.weakness"),
                     (width/2) + 91 + 29 + 4,
                     y, 0xDFDFFF, false);
-            context.getMatrices().pop();
 
         }
 

@@ -2,20 +2,15 @@ package org.hsneptune.elixirs.worldgen.feature;
 
 import java.util.Random;
 
-import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.blocks.ElixirsBlocks;
 import org.hsneptune.elixirs.worldgen.biome.ElixirsBiomes;
 
-import com.mojang.serialization.Codec;
 
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.FeaturePlacementContext;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class GlowingMushroomFeature extends Feature<DefaultFeatureConfig> {

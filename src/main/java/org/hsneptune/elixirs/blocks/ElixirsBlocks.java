@@ -1,6 +1,5 @@
 package org.hsneptune.elixirs.blocks;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -12,7 +11,6 @@ import net.minecraft.util.Identifier;
 import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.items.ElixirsGroup;
 import org.hsneptune.elixirs.blocks.custom.GlowingVines;
-import net.minecraft.item.BoneMealItem;
 
 
 public class ElixirsBlocks {

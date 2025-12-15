@@ -50,7 +50,8 @@ public abstract class BoneMealItemMixin {
             for (int i = 0; i < 3; i++) {
                 var newPos = targetPos.add(0, i, 0);
                 if (world.getBlockState(newPos.add(0, -1, 0)).isReplaceable()) {
-                    System.out.println(Registries.BLOCK.getEntryList(ElixirsTags.GROWS_GLOWING_FOLIAGE).toString());
+					// we'll have to sysprint multiple things out to see which works
+                    System.out.println(Registries.BLOCK.iterateEntries(ElixirsTags.GROWS_GLOWING_FOLIAGE).toString());
                     BlockState newState = Registries.BLOCK.getRandomEntry(ElixirsTags.GROWS_GLOWING_FOLIAGE, random).get().value().getDefaultState().with(TallPlantBlock.HALF, DoubleBlockHalf.UPPER);
                     if (newState.canPlaceAt(world, targetPos)) {
                         world.setBlockState(targetPos, newState, 3);

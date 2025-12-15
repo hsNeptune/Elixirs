@@ -2,12 +2,11 @@ package org.hsneptune.elixirs.mixin;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.DamageTypeTags;
-import org.hsneptune.elixirs.Elixirs;
+import net.minecraft.server.world.ServerWorld;
+
 import org.hsneptune.elixirs.effects.AffinityEffect;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.jetbrains.annotations.Nullable;
@@ -27,15 +26,15 @@ public abstract class LivingEntityMixin {
 
     @Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(RegistryEntry<StatusEffect> effect);
 
-    @Shadow public abstract boolean blockedByShield(DamageSource source);
+	@Shadow public abstract float getDamageBlockedAmount(ServerWorld world, DamageSource source, float amount);
 
     @ModifyVariable(
-            method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
+            method = "damage(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/damage/DamageSource;F)Z",
             at = @At("HEAD"),
             ordinal = 0,
             argsOnly = true
     )
-    private float applyRageDamageMultiplier(float amount, DamageSource source) {
+    private float applyRageDamageMultiplier(ServerWorld world, float amount, DamageSource source) {
         LivingEntity self = (LivingEntity) (Object) this;
 
         float modifiedAmount = amount;
@@ -74,9 +73,10 @@ public abstract class LivingEntityMixin {
     }
 
     @Inject(method = "damage", at = @At(value ="INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", shift = At.Shift.AFTER))
-    private void applyDamages(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+    private void applyDamages(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity self = (LivingEntity) (Object) this;
 
+		float g = this.getDamageBlockedAmount(world, source, amount);
         ArrayList<AffinityEffect> effects = new ArrayList<>();
         for (StatusEffectInstance effect : self.getStatusEffects()) {
             if (effect.getEffectType().value() instanceof AffinityEffect) {
@@ -84,7 +84,7 @@ public abstract class LivingEntityMixin {
             }
         }
         for (AffinityEffect effect : effects) {
-            if (effect.isWeak(source) && !self.blockedByShield(source)) {
+            if (effect.isWeak(source) && g <= 0.0f) {
                 self.setHealth(0.0f);
             }
         }

@@ -5,6 +5,7 @@ import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 
 public class ExpIncreaseEffect extends StatusEffect {
@@ -18,10 +19,10 @@ public class ExpIncreaseEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
 
         if (entity instanceof PlayerEntity) {
-            if (entity.getWorld().getTime() % 20 == 0) {
+            if (world.getTime() % 20 == 0) {
                 ((PlayerEntity) entity).addExperience(1);
             }
         }
@@ -32,7 +33,7 @@ public class ExpIncreaseEffect extends StatusEffect {
     @Override
     public void onApplied(AttributeContainer attributeContainer, int amplifier) {
         super.onApplied(attributeContainer, amplifier);
-        EntityAttributeInstance attribute = attributeContainer.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+        EntityAttributeInstance attribute = attributeContainer.getCustomInstance(EntityAttributes.MOVEMENT_SPEED);
         if (attribute == null) {
             return;
         }
@@ -46,7 +47,7 @@ public class ExpIncreaseEffect extends StatusEffect {
     @Override
     public void onRemoved(AttributeContainer attributeContainer) {
         super.onRemoved(attributeContainer);
-        EntityAttributeInstance attribute = attributeContainer.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+        EntityAttributeInstance attribute = attributeContainer.getCustomInstance(EntityAttributes.MOVEMENT_SPEED);
         if (attribute != null) {
             attribute.removeModifier(modifierIdentifier);
         }
