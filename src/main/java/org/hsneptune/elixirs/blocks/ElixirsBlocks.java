@@ -11,7 +11,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.items.ElixirsGroup;
-import org.hsneptune.elixirs.items.ElixirsItems;
+import org.hsneptune.elixirs.blocks.custom.GlowingVines;
+import net.minecraft.item.BoneMealItem;
+
 
 public class ElixirsBlocks {
     public static final Block POTENT_ORE = register(new Block(BlockBehaviour.Properties.of()
@@ -20,7 +22,7 @@ public class ElixirsBlocks {
     public static final Block GLOWING_MUSHROOM_STEM = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.MUSHROOM_STEM)), "glowing_mushroom_stem", true);
     public static final Block GLOWING_MUSHROOM_BLOCK = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).lightLevel(ctx -> 7)), "glowing_mushroom_block", true);
     public static final Block GLOWING_MUSHROOM_FOLIAGE = register(new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).lightLevel(ctx -> 2)), "glowing_mushroom_foliage", true);
-
+    public static final Block GLOWING_VINES = register(new GlowingVines(AbstractBlock.Settings.create().luminance(ctx -> 10)), "glowing_vines", true); 
     public static void initialize() {
         Elixirs.LOGGER.info("Initializing Mod Blocks");
     }
