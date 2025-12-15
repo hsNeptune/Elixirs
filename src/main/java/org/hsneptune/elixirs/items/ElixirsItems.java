@@ -25,9 +25,6 @@ public class ElixirsItems {
     }
 
 
-
-
-
     public static void initialize() {
         TurtleArmor.initialize();
         LOGGER.info("Mod items initialized!");

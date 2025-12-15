@@ -14,5 +14,6 @@ public class ElixirsTags {
 
     public static void initalize() {
         Elixirs.LOGGER.info("Initializing Tags");
+		Elixirs.LOGGER.info("");
     }
 }

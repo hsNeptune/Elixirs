@@ -1,5 +1,6 @@
 package org.hsneptune.elixirs.items;
 
+import net.minecraft.block.Block;
 import com.mojang.serialization.Codec;
 import net.minecraft.component.ComponentType;
 import net.minecraft.entity.LivingEntity;
