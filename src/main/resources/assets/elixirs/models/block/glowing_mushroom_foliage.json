@@ -1,0 +1,7 @@
+
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "elixirs:block/glowing_mushroom_foliage"
+  }
+}

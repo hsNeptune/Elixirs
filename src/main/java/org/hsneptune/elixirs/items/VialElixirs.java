@@ -99,13 +99,13 @@ public class VialElixirs extends PotionItem {
             .addLine("Immunity to Projectile Damage", Formatting.BLUE)
             .addLine("Instakill by Melee Damage", Formatting.RED));
     public static final Item HEAD_AFFINITY_SERUM_30S = ElixirsItems.register("head_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "head_affinity_serum")
-            .addEffect(ElixirsEffects.PROJECTILE_AFFINITY, (int) (1200*.5), 0, 0xacb9c2)
-            .addLine("Immunity to Projectile Damage", Formatting.BLUE)
-            .addLine("Instakill by Melee Damage", Formatting.RED));
+            .addEffect(ElixirsEffects.HEAD_AFFINITY, (int) (1200*.5), 0, 0xacb9c2)
+            .addLine("Immunity to Falling Objects", Formatting.BLUE)
+            .addLine("Instakill by Fall Damage", Formatting.RED));
     public static final Item HEAD_AFFINITY_SERUM_1M = ElixirsItems.register("head_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "head_affinity_serum")
-            .addEffect(ElixirsEffects.PROJECTILE_AFFINITY, (int) (1200), 0, 0xacb9c2)
-            .addLine("Immunity to Projectile Damage", Formatting.BLUE)
-            .addLine("Instakill by Melee Damage", Formatting.RED));
+            .addEffect(ElixirsEffects.HEAD_AFFINITY, (int) (1200), 0, 0xacb9c2)
+            .addLine("Immunity to Falling Objects", Formatting.BLUE)
+            .addLine("Instakill by Fall Damage", Formatting.RED));
 
     public VialElixirs(Settings settings, boolean isEffect, String id) {
 
