@@ -1,18 +1,21 @@
 package org.hsneptune.elixirs.effects;
 
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
 
-public class ExpIncreaseEffect extends StatusEffect {
-    public static final Identifier modifierIdentifier = Identifier.of("elixirs", "exp_increase_speed");
+public class ExpIncreaseEffect extends MobEffect {
+    public static final Identifier modifierIdentifier = Identifier.fromNamespaceAndPath("elixirs", "exp_increase_speed");
 
 
     protected ExpIncreaseEffect() {
-        super(StatusEffectCategory.BENEFICIAL, 0x4fed47);
+        super(MobEffectCategory.BENEFICIAL, 0x4fed47);
 //        super.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, Identifier.of("elixirs", "exp_increase"),
 //                0.1f, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
@@ -20,9 +23,9 @@ public class ExpIncreaseEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
 
-        if (entity instanceof PlayerEntity) {
+        if (entity instanceof Player) {
             if (entity.getWorld().getTime() % 20 == 0) {
-                ((PlayerEntity) entity).addExperience(1);
+                ((Player) entity).giveExperiencePoints(1);
             }
         }
 
@@ -30,23 +33,23 @@ public class ExpIncreaseEffect extends StatusEffect {
     }
 
     @Override
-    public void onApplied(AttributeContainer attributeContainer, int amplifier) {
-        super.onApplied(attributeContainer, amplifier);
-        EntityAttributeInstance attribute = attributeContainer.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+    public void addAttributeModifiers(AttributeMap attributeContainer, int amplifier) {
+        super.addAttributeModifiers(attributeContainer, amplifier);
+        AttributeInstance attribute = attributeContainer.getInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
         if (attribute == null) {
             return;
         }
         double value = (Math.atan(0.1*amplifier + 0.25) * (2 / (2*Math.PI)));
-        EntityAttributeModifier modifier = new EntityAttributeModifier(modifierIdentifier, value, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        AttributeModifier modifier = new AttributeModifier(modifierIdentifier, value, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
         if (!attribute.hasModifier(modifierIdentifier)) {
-            attribute.addTemporaryModifier(modifier);
+            attribute.addTransientModifier(modifier);
         }
     }
 
     @Override
-    public void onRemoved(AttributeContainer attributeContainer) {
-        super.onRemoved(attributeContainer);
-        EntityAttributeInstance attribute = attributeContainer.getCustomInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+    public void removeAttributeModifiers(AttributeMap attributeContainer) {
+        super.removeAttributeModifiers(attributeContainer);
+        AttributeInstance attribute = attributeContainer.getInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
         if (attribute != null) {
             attribute.removeModifier(modifierIdentifier);
         }
@@ -54,7 +57,7 @@ public class ExpIncreaseEffect extends StatusEffect {
 
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
 
         return true;
     }

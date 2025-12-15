@@ -1,12 +1,12 @@
 package org.hsneptune.elixirs.effects;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
 
-public class RageEffect extends StatusEffect {
+public class RageEffect extends MobEffect {
     protected RageEffect() {
-        super(StatusEffectCategory.BENEFICIAL, 0xDF0000);
+        super(MobEffectCategory.BENEFICIAL, 0xDF0000);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class RageEffect extends StatusEffect {
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         // Return true to allow applyUpdateEffect to be called every tick.
         return true;
     }
