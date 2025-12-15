@@ -1,14 +1,13 @@
 package org.hsneptune.elixirs.effects;
 
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.potion.Potions;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.items.ElixirsItems;
 import org.hsneptune.elixirs.items.VialElixirs;
@@ -19,13 +18,13 @@ import java.util.List;
 import static org.hsneptune.elixirs.items.ElixirsItems.POTENT_DUST;
 
 public class ElixirsEffects {
-    public static final RegistryEntry<StatusEffect> RAGE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "rage"), new RageEffect());
-    public static final RegistryEntry<StatusEffect> STARRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "starry"),
+    public static final Holder<MobEffect> RAGE = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath("elixirs", "rage"), new RageEffect());
+    public static final Holder<MobEffect> STARRY = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath("elixirs", "starry"),
             new ExpIncreaseEffect());
-    public static final RegistryEntry<StatusEffect> MELEE_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "melee_affinity"), new MeleeAffinity());
-    public static final RegistryEntry<StatusEffect> PROJECTILE_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "projectile_affinity"), new ProjectileAffinity());
+    public static final Holder<MobEffect> MELEE_AFFINITY = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath("elixirs", "melee_affinity"), new MeleeAffinity());
+    public static final Holder<MobEffect> PROJECTILE_AFFINITY = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath("elixirs", "projectile_affinity"), new ProjectileAffinity());
 
-    public static final RegistryEntry<StatusEffect> HEAD_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "head_affinity"), new HeadAffinity());
+    public static final Holder<MobEffect> HEAD_AFFINITY = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath("elixirs", "head_affinity"), new HeadAffinity());
 
     public static final List<ElixirItemRecipe> CUSTOM_ITEM_RECIPES = new ArrayList<>();
     public static final List<Item> ELIXIRS_INGREDIENTS = new ArrayList<>();
@@ -135,7 +134,7 @@ public class ElixirsEffects {
             this.ingredient = ingredient;
             this.to = to;
             FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
-                builder.registerItemRecipe(
+                builder.addContainerRecipe(
                         // Input potion.
                         from,
                         // Ingredient

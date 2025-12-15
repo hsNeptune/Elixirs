@@ -1,24 +1,24 @@
 package org.hsneptune.elixirs.effects;
 
 
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectCategory;
 
 public class HeadAffinity extends AffinityEffect {
 
     public HeadAffinity() {
-        super(StatusEffectCategory.BENEFICIAL, 0xACB9C2, Identifier.ofVanilla("textures/item/mace.png"), Identifier.ofVanilla("textures/mob_effect/slow_falling.png")); 
+        super(MobEffectCategory.BENEFICIAL, 0xACB9C2, Identifier.withDefaultNamespace("textures/item/mace.png"), Identifier.withDefaultNamespace("textures/mob_effect/slow_falling.png")); 
     }
 
     @Override
     public boolean isResistant(DamageSource source) {
-        return source.isIn(DamageTypeTags.DAMAGES_HELMET);
+        return source.is(DamageTypeTags.DAMAGES_HELMET);
     }
 
     @Override
     public boolean isWeak(DamageSource source) {
-        return source.isIn(DamageTypeTags.IS_FALL);
+        return source.is(DamageTypeTags.IS_FALL);
     }
 }

@@ -1,13 +1,13 @@
 package org.hsneptune.elixirs.mixin;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.AbstractClientPlayer;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-@Mixin(AbstractClientPlayerEntity.class)
+@Mixin(AbstractClientPlayer.class)
 public class RageFovMixin {
     @ModifyVariable(
             method = "getFovMultiplier()F",
@@ -15,8 +15,8 @@ public class RageFovMixin {
             ordinal = 0
     )
     public float fovMultiplier(float f) {
-        if (MinecraftClient.getInstance().player.hasStatusEffect(ElixirsEffects.RAGE)) {
-            return (float) (f * (1 + (.05f * Math.sqrt(MinecraftClient.getInstance().player.getStatusEffect(ElixirsEffects.RAGE).getAmplifier()))));
+        if (Minecraft.getInstance().player.hasEffect(ElixirsEffects.RAGE)) {
+            return (float) (f * (1 + (.05f * Math.sqrt(Minecraft.getInstance().player.getEffect(ElixirsEffects.RAGE).getAmplifier()))));
         } else {
             return f;
         }

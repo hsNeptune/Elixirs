@@ -1,12 +1,5 @@
 package org.hsneptune.elixirs.mixin;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.DamageTypeTags;
 import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.effects.AffinityEffect;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
@@ -19,18 +12,23 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
+import net.minecraft.core.Holder;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
-    @Shadow public abstract boolean hasStatusEffect(RegistryEntry<StatusEffect> effect);
+    @Shadow public abstract boolean hasEffect(Holder<MobEffect> effect);
 
-    @Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(RegistryEntry<StatusEffect> effect);
+    @Shadow @Nullable public abstract MobEffectInstance getEffect(Holder<MobEffect> effect);
 
     @Shadow public abstract boolean blockedByShield(DamageSource source);
 
     @ModifyVariable(
-            method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z",
+            method = "damage(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
             at = @At("HEAD"),
             ordinal = 0,
             argsOnly = true
@@ -40,22 +38,22 @@ public abstract class LivingEntityMixin {
 
         float modifiedAmount = amount;
 
-        if (self.hasStatusEffect(ElixirsEffects.RAGE)) {
-            int amp = self.getStatusEffect(ElixirsEffects.RAGE).getAmplifier();
+        if (self.hasEffect(ElixirsEffects.RAGE)) {
+            int amp = self.getEffect(ElixirsEffects.RAGE).getAmplifier();
             modifiedAmount *= (amp + 2);
         }
 
-        if (source.getAttacker() instanceof LivingEntity attacker) {
-            if (attacker.hasStatusEffect(ElixirsEffects.RAGE)) {
-                int amp = attacker.getStatusEffect(ElixirsEffects.RAGE).getAmplifier();
+        if (source.getEntity() instanceof LivingEntity attacker) {
+            if (attacker.hasEffect(ElixirsEffects.RAGE)) {
+                int amp = attacker.getEffect(ElixirsEffects.RAGE).getAmplifier();
                 modifiedAmount *= (amp + 2);
             }
         }
 
         ArrayList<AffinityEffect> effects = new ArrayList<>();
-        for (StatusEffectInstance effect : self.getStatusEffects()) {
-            if (effect.getEffectType().value() instanceof AffinityEffect) {
-                effects.add((AffinityEffect) effect.getEffectType().value());
+        for (MobEffectInstance effect : self.getActiveEffects()) {
+            if (effect.getEffect().value() instanceof AffinityEffect) {
+                effects.add((AffinityEffect) effect.getEffect().value());
             }
         }
 
@@ -73,14 +71,14 @@ public abstract class LivingEntityMixin {
         return modifiedAmount;
     }
 
-    @Inject(method = "damage", at = @At(value ="INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", shift = At.Shift.AFTER))
+    @Inject(method = "hurtServer", at = @At(value ="INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;isDeadOrDying()Z", shift = At.Shift.AFTER))
     private void applyDamages(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity self = (LivingEntity) (Object) this;
 
         ArrayList<AffinityEffect> effects = new ArrayList<>();
-        for (StatusEffectInstance effect : self.getStatusEffects()) {
-            if (effect.getEffectType().value() instanceof AffinityEffect) {
-                effects.add((AffinityEffect) effect.getEffectType().value());
+        for (MobEffectInstance effect : self.getActiveEffects()) {
+            if (effect.getEffect().value() instanceof AffinityEffect) {
+                effects.add((AffinityEffect) effect.getEffect().value());
             }
         }
         for (AffinityEffect effect : effects) {
