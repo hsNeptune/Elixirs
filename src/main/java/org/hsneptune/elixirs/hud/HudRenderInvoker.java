@@ -13,13 +13,16 @@ import net.minecraft.util.Identifier;
 public class HudRenderInvoker {
 	public static void start() {
 		// for some reason a lambda isn't working here
+		Elixirs.LOGGER.info("Made it to start of render invoker");
 		HudElementRegistry.attachElementBefore(VanillaHudElements.CHAT, 
 				Identifier.of(Elixirs.MOD_ID, "overlay_render"), new HudElement () {
 					@Override
 					public void render(DrawContext dcContext, RenderTickCounter rCounter) { HudOverlays.render(dcContext, rCounter);}
 				});
+
+		Elixirs.LOGGER.info("Made it to start of second render invoker");
 		HudElementRegistry.attachElementBefore(VanillaHudElements.CHAT, 
-				Identifier.of(Elixirs.MOD_ID, "overlay_render"), new HudElement () {
+				Identifier.of(Elixirs.MOD_ID, "affinity_render"), new HudElement () {
 					@Override
 					public void render(DrawContext dcContext, RenderTickCounter rCounter) { HudOverlays.renderAffinity(dcContext, rCounter);}
 				});

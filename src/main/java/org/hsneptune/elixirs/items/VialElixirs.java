@@ -45,71 +45,75 @@ public class VialElixirs extends PotionItem {
     public static final ComponentType<List<Integer>> AMPLIFIER = Registry.register(Registries.DATA_COMPONENT_TYPE,
             Identifier.of("elixirs", "amplifier"), ComponentType.<List<Integer>>builder().codec(Codec.list(Codec.INT)).build());
 
-    public static final Item RAGE_SERUM_3M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
+    public static final Item RAGE_SERUM = ElixirsItems.register("rage_serum_3m", s -> new VialElixirs(s, true, "rage_serum")
             .addEffect(ElixirsEffects.RAGE, 1200*3, 0, Formatting.RED)
-            .addLine("x%s Damage Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
-            .addLine("x%s Damage Resistance", Formatting.RED, s -> (float) (1.0/(s + 2)), 0));
+            .addLine("x%s Damage Bonus", Formatting.BLUE, st -> (float) st + 2, 0)
+            .addLine("x%s Damage Resistance", Formatting.RED, st -> (float) (1.0/(st + 2)), 0), new Item.Settings().maxCount(1));
 
-    public static final Item RAGE_SERUM_8M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
+    public static final Item RAGE_SERUM_8M = ElixirsItems.register("rage_serum_8m", s -> new VialElixirs(s, true, "rage_serum")
             .addEffect(ElixirsEffects.RAGE, 1200*8, 0, Formatting.RED)
-            .addLine("x%s Damage Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
-            .addLine("x%s Damage Resistance", Formatting.RED, s -> (float) (1.0/(s + 2)), 0));
+            .addLine("x%s Damage Bonus", Formatting.BLUE, st -> (float) st + 2, 0)
+            .addLine("x%s Damage Resistance", Formatting.RED, st -> (float) (1.0/(st + 2)), 0), new Item.Settings().maxCount(1));
 
-    public static final Item RAGE_SERUM_1M = ElixirsItems.register("rage_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "rage_serum")
+    public static final Item RAGE_SERUM_1M = ElixirsItems.register("rage_serum_1m", s -> new VialElixirs(s, true, "rage_serum")
             .addEffect(ElixirsEffects.RAGE, (int) (1200*1.5), 1, Formatting.RED)
-            .addLine("x%s Damage Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
-            .addLine("x%s Damage Resistance", Formatting.RED, s -> (float) (1.0/(s + 2)), 0));
+            .addLine("x%s Damage Bonus", Formatting.BLUE, st -> (float) st + 2, 0)
+            .addLine("x%s Damage Resistance", Formatting.RED, st -> (float) (1.0/(st + 2)), 0), new Item.Settings().maxCount(1));
 
-    public static final Item STARRY_SERUM_3M = ElixirsItems.register("starry_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "starry_serum")
+    public static final Item STARRY_SERUM_3M = ElixirsItems.register("starry_serum_3m", s -> new VialElixirs(s, true, "starry_serum")
             .addEffect(ElixirsEffects.STARRY, 1200*3, 0, 0x8dc42f)
-            .addLine("+%s%% Movement Speed", Formatting.BLUE, s -> 100f * (float) (Math.atan(0.1*s + 0.25) * (2 / (2*Math.PI))), 0)
-            .addLine("x%s Experience Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
-            .addLine("+%s Experience Gained per Second", Formatting.BLUE, s -> (float) s + 2, 0));
+            .addLine("+%s%% Movement Speed", Formatting.BLUE, st -> 100f * (float) (Math.atan(0.1*st + 0.25) * (2 / (2*Math.PI))), 0)
+            .addLine("x%s Experience Bonus", Formatting.BLUE, st -> (float) st + 2, 0)
+            .addLine("+%s Experience Gained per Second", Formatting.BLUE, st -> (float) st + 2, 0), new Item.Settings().maxCount(1));
 
-    public static final Item STARRY_SERUM_8M = ElixirsItems.register("starry_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "starry_serum")
+    public static final Item STARRY_SERUM_8M = ElixirsItems.register("starry_serum_8m", s -> new VialElixirs(s, true, "starry_serum")
             .addEffect(ElixirsEffects.STARRY, 1200*8, 0, 0x8dc42f)
-            .addLine("+%s%% Movement Speed", Formatting.BLUE, s -> 100f * (float) (Math.atan(0.1*s + 0.25) * (2 / (2*Math.PI))), 0)
-            .addLine("x%s Experience Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
-            .addLine("+%s Experience Gained per Second", Formatting.BLUE, s -> (float) s + 2, 0));
+            .addLine("+%s%% Movement Speed", Formatting.BLUE, st -> 100f * (float) (Math.atan(0.1*st + 0.25) * (2 / (2*Math.PI))), 0)
+            .addLine("x%s Experience Bonus", Formatting.BLUE, st -> (float) st + 2, 0)
+            .addLine("+%s Experience Gained per Second", Formatting.BLUE, st -> (float) st + 2, 0), new Item.Settings().maxCount(1));
 
-    public static final Item STARRY_SERUM_EFFECTIVE = ElixirsItems.register("starry_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "starry_serum")
+    public static final Item STARRY_SERUM_EFFECTIVE = ElixirsItems.register("starry_serum_1m", s -> new VialElixirs(s, true, "starry_serum")
             .addEffect(ElixirsEffects.STARRY, (int) (1200*1.5), 1, 0x8dc42f)
-            .addLine("+%s%% Movement Speed", Formatting.BLUE, s -> 100f * (float) (Math.atan(0.1*s + 0.25) * (2 / (2*Math.PI))), 0)
-            .addLine("x%s Experience Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
-            .addLine("+%s Experience Gained per Second", Formatting.BLUE, s -> (float) s + 2, 0));
+            .addLine("+%s%% Movement Speed", Formatting.BLUE, st -> 100f * (float) (Math.atan(0.1*st + 0.25) * (2 / (2*Math.PI))), 0)
+            .addLine("x%s Experience Bonus", Formatting.BLUE, st -> (float) st + 2, 0)
+            .addLine("+%s Experience Gained per Second", Formatting.BLUE, st -> (float) st + 2, 0), new Item.Settings().maxCount(1));
 
-    public static final Item STARRY_SERUM_SUPER_EFFECTIVE = ElixirsItems.register("starry_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "starry_serum")
+    public static final Item STARRY_SERUM_SUPER_EFFECTIVE = ElixirsItems.register("starry_serum_30s", s -> new VialElixirs(s, true, "starry_serum")
             .addEffect(ElixirsEffects.STARRY, (int) (1200*.5), 2, 0x8dc42f)
-            .addLine("+%s%% Movement Speed", Formatting.BLUE, s -> 100f * (float) (Math.atan(0.1*s + 0.25) * (2 / (2*Math.PI))), 0)
-            .addLine("x%s Experience Bonus", Formatting.BLUE, s -> (float) s + 2, 0)
-            .addLine("+%s Experience Gained per Second", Formatting.BLUE, s -> (float) s + 2, 0));
+            .addLine("+%s%% Movement Speed", Formatting.BLUE, st -> 100f * (float) (Math.atan(0.1*st + 0.25) * (2 / (2*Math.PI))), 0)
+            .addLine("x%s Experience Bonus", Formatting.BLUE, st -> (float) st + 2, 0)
+            .addLine("+%s Experience Gained per Second", Formatting.BLUE, st -> (float) st + 2, 0), new Item.Settings().maxCount(1));
 
-    public static final Item MELEE_AFFINITY_SERUM_30S = ElixirsItems.register("melee_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "melee_affinity_serum")
+    public static final Item MELEE_AFFINITY_SERUM_30S = ElixirsItems.register("melee_affinity_serum_30s", s -> new VialElixirs(s, true, "melee_affinity_serum")
             .addEffect(ElixirsEffects.MELEE_AFFINITY, (int) (1200*.5), 0, 0x1a84d3)
             .addLine("Immunity to Melee Damage", Formatting.BLUE)
-            .addLine("Instakill by Projectile", Formatting.RED));
-    public static final Item MELEE_AFFINITY_SERUM_1M = ElixirsItems.register("melee_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "melee_affinity_serum")
+            .addLine("Instakill by Projectile", Formatting.RED), new Item.Settings().maxCount(1));
+
+    public static final Item MELEE_AFFINITY_SERUM_1M = ElixirsItems.register("melee_affinity_serum_1m", s -> new VialElixirs(s, true, "melee_affinity_serum")
             .addEffect(ElixirsEffects.MELEE_AFFINITY, (int) (1200), 0, 0x1a84d3)
             .addLine("Immunity to Melee Damage", Formatting.BLUE)
-            .addLine("Instakill by Projectile", Formatting.RED));
+            .addLine("Instakill by Projectile", Formatting.RED), new Item.Settings().maxCount(1));
 
-
-    public static final Item PROJECTILE_AFFINITY_SERUM_30S = ElixirsItems.register("projectile_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "projectile_affinity_serum")
+    public static final Item PROJECTILE_AFFINITY_SERUM_30S = ElixirsItems.register("projectile_affinity_serum_30s", s -> new VialElixirs(s, true, "projectile_affinity_serum")
             .addEffect(ElixirsEffects.PROJECTILE_AFFINITY, (int) (1200*.5), 0, 0xb55ce6)
             .addLine("Immunity to Projectile Damage", Formatting.BLUE)
-            .addLine("Instakill by Melee Damage", Formatting.RED));
-    public static final Item PROJECTILE_AFFINITY_SERUM_1M = ElixirsItems.register("projectile_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "projectile_affinity_serum")
+            .addLine("Instakill by Melee Damage", Formatting.RED), new Item.Settings().maxCount(1));
+
+    public static final Item PROJECTILE_AFFINITY_SERUM_1M = ElixirsItems.register("projectile_affinity_serum_1m", s -> new VialElixirs(s, true, "projectile_affinity_serum")
             .addEffect(ElixirsEffects.PROJECTILE_AFFINITY, (int) (1200), 0, 0xb55ce6)
             .addLine("Immunity to Projectile Damage", Formatting.BLUE)
-            .addLine("Instakill by Melee Damage", Formatting.RED));
-    public static final Item HEAD_AFFINITY_SERUM_30S = ElixirsItems.register("head_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "head_affinity_serum")
+            .addLine("Instakill by Melee Damage", Formatting.RED), new Item.Settings().maxCount(1));
+
+    public static final Item HEAD_AFFINITY_SERUM_30S = ElixirsItems.register("head_affinity_serum_30s", s -> new VialElixirs(s, true, "head_affinity_serum")
             .addEffect(ElixirsEffects.HEAD_AFFINITY, (int) (1200*.5), 0, 0xacb9c2)
             .addLine("Immunity to Falling Objects", Formatting.BLUE)
-            .addLine("Instakill by Fall Damage", Formatting.RED));
-    public static final Item HEAD_AFFINITY_SERUM_1M = ElixirsItems.register("head_affinity_serum", new VialElixirs(new Item.Settings().maxCount(1), true, "head_affinity_serum")
+            .addLine("Instakill by Fall Damage", Formatting.RED), new Item.Settings().maxCount(1));
+
+    public static final Item HEAD_AFFINITY_SERUM_1M = ElixirsItems.register("head_affinity_serum_1m", s -> new VialElixirs(s, true, "head_affinity_serum")
             .addEffect(ElixirsEffects.HEAD_AFFINITY, (int) (1200), 0, 0xacb9c2)
             .addLine("Immunity to Falling Objects", Formatting.BLUE)
-            .addLine("Instakill by Fall Damage", Formatting.RED));
+            .addLine("Instakill by Fall Damage", Formatting.RED), new Item.Settings().maxCount(1));
+
 
     public VialElixirs(Settings settings, boolean isEffect, String id) {
 		// wanted to define the translation key before invoking the constructor call
@@ -204,6 +208,9 @@ public class VialElixirs extends PotionItem {
     }
 
     public void appendTooltip(ItemStack stack, TooltipContext context, TooltipType type, List<Text> tooltip) {
+        if (!stack.isOf(this)) {
+            return;
+        }
         List<Integer> stackDurations = stack.getOrDefault(DURATION, this.durations);
         List<Integer> stackAmplifiers = stack.getOrDefault(AMPLIFIER, this.amplifiers);
         if (!isEffect) {

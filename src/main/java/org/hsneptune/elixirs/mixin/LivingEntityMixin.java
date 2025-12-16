@@ -34,7 +34,7 @@ public abstract class LivingEntityMixin {
             ordinal = 0,
             argsOnly = true
     )
-    private float applyRageDamageMultiplier(ServerWorld world, float amount, DamageSource source) {
+    private float applyRageDamageMultiplier(float amount, ServerWorld world, DamageSource source) {
         LivingEntity self = (LivingEntity) (Object) this;
 
         float modifiedAmount = amount;

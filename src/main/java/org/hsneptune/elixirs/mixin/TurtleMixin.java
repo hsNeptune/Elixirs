@@ -1,6 +1,8 @@
 package org.hsneptune.elixirs.mixin;
 
+import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -15,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Iterator;
+
 @Mixin(PlayerEntity.class)
 public abstract class TurtleMixin extends LivingEntity {
 
@@ -23,13 +27,15 @@ public abstract class TurtleMixin extends LivingEntity {
         super(entityType, world);
     }
 
-    @Shadow public abstract Iterable<ItemStack> getArmorItems();
 
     @Inject(method = "tick()V", at = @At("TAIL"))
     private void onTick(CallbackInfo ci) {
         byte count = 0;
         byte helmet = 0;
-        for (ItemStack stack: this.getArmorItems()) {
+        Iterator<EquipmentSlot> equipmentSlot = AttributeModifierSlot.ARMOR.iterator();
+        for (Iterator<EquipmentSlot> it = equipmentSlot; it.hasNext(); ) {
+            EquipmentSlot slot = it.next();
+            ItemStack stack = this.getEquippedStack(slot);
             if (stack.getItem() == TurtleArmor.TURTLE_CHESTPLATE ||
                     stack.getItem() == TurtleArmor.TURTLE_LEGGINGS ||
                     stack.getItem() == TurtleArmor.TURTLE_BOOTS) {

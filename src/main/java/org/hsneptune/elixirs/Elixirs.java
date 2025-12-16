@@ -27,11 +27,15 @@ public class Elixirs implements ModInitializer {
     
         ElixirsTags.initalize();
 		ElixirsItems.initialize();
+		LOGGER.info("Items initalized");
 		ElixirsEffects.initialize();
+		LOGGER.info("Effects initalized");
 		ElixirsBlocks.initialize();
+		LOGGER.info("Blocks initalized");
 		Worldgen.initialize();
 		ElixirsGroup.registerItemGroup();
         ElixirsFeatures.initialize();
+			
 
 		LOGGER.info("Hello Fabric world!");
 	}
