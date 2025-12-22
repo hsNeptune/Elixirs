@@ -30,7 +30,6 @@ public class GlowingMushroomFeature extends Feature<DefaultFeatureConfig> {
         BlockPos origin = context.getOrigin();
         BlockPos belowPos = origin.down(1);
         BlockState belowState = world.getBlockState(belowPos);
-        BlockState newBlock =
     
         try {
             if (!world.getBiome(belowPos).matchesKey(ElixirsBiomes.GLOWING_MUSHROOM_CAVES)) {

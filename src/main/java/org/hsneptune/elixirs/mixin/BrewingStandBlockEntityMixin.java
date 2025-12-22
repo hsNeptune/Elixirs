@@ -1,11 +1,7 @@
 package org.hsneptune.elixirs.mixin;
 
-import net.minecraft.block.entity.BrewingStandBlockEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.BrewingRecipeRegistry;
-import net.minecraft.util.collection.DefaultedList;
-import org.hsneptune.elixirs.Elixirs;
+import java.util.List;
+
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.hsneptune.elixirs.items.VialElixirs;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +9,12 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import net.minecraft.block.entity.BrewingStandBlockEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.BrewingRecipeRegistry;
+import net.minecraft.util.collection.DefaultedList;
 
 @Mixin(BrewingStandBlockEntity.class)
 public abstract class BrewingStandBlockEntityMixin {
@@ -39,19 +41,13 @@ public abstract class BrewingStandBlockEntityMixin {
         ItemStack ingredientStack = slots.get(3); // slot 3 is the ingredient slot
         if (ingredientStack.isEmpty()) return;
 
-        Item ingredientItem = ingredientStack.getItem();
-
         for (int i = 0; i < 3; ++i) { // check each bottle slot (0–2)
             ItemStack baseStack = slots.get(i);
             if (baseStack.isEmpty()) continue;
 
-            Item baseItem = baseStack.getItem();
-
             for (ElixirsEffects.ElixirItemRecipe recipe : ElixirsEffects.CUSTOM_ITEM_RECIPES) {
-
-                if (recipe.from().equals(baseItem) && recipe.ingredient().equals(ingredientItem)) {
-
-                    cir.cancel();
+                if (ElixirsEffects.matchesRecipe(baseStack, ingredientStack, recipe)) {
+					cir.cancel();
                     cir.setReturnValue(true);
                     return;
                 }
@@ -59,4 +55,5 @@ public abstract class BrewingStandBlockEntityMixin {
         }
 
     }
+
 }

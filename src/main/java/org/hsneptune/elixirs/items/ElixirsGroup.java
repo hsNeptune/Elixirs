@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class ElixirsGroup {
     public static ArrayList<Item> items = new ArrayList<>();
+	public static ArrayList<ItemStack> itemStacks = new ArrayList<>();
     public static  ItemGroup ELIXIR_ITEM_GROUP;
 
     public static void registerItemGroup() {
@@ -21,11 +22,14 @@ public class ElixirsGroup {
         ELIXIR_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
                 Identifier.of(Elixirs.MOD_ID, "elixir_item_group"),
                 FabricItemGroup.builder().icon(() -> new ItemStack(ElixirsItems.VIAL))
-                        .entries((context, entries) -> { items.forEach(entries::add); })
+                        .entries((context, entries) -> { items.forEach(entries::add); itemStacks.forEach(entries::add); })
                         .displayName(Text.translatable("itemgroup.elixirs.elixir_items")).build());
     }
 
     public static void addItem(Item item){
         items.add(item);
+    }
+    public static void addItem(ItemStack item){
+        itemStacks.add(item);
     }
 }
