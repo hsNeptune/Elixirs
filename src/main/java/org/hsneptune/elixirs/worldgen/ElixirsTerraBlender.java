@@ -9,9 +9,12 @@ import terrablender.api.TerraBlenderApi;
 
 public class ElixirsTerraBlender implements TerraBlenderApi {
 
+	public static final ElixirsTerraBlenderRegion glowing_mushroom = new ElixirsTerraBlenderRegion(Identifier.of("elixirs", "glowing_mushroom"), 2);
+
     @Override
     public void onTerraBlenderInitialized() {
-        Regions.register(new ElixirsTerraBlenderRegion(Identifier.of("elixirs", "glowing_mushroom"), 2));
-        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, Elixirs.MOD_ID, ElixirsSurfaceRules.makeRules());
+        Regions.register(glowing_mushroom);
+
+        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, Elixirs.MOD_ID, ElixirsSurfaceRules.makeRule());
     }
 }

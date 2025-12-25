@@ -13,15 +13,13 @@ public class ElixirsSurfaceRules {
     private static final MaterialRules.MaterialRule GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
     private static final MaterialRules.MaterialRule GLOWING_FOLIAGE = makeStateRule(ElixirsBlocks.GLOWING_MUSHROOM_FOLIAGE);
 
-    public static MaterialRules.MaterialRule makeRules() {
+    public static MaterialRules.MaterialRule makeRule() {
         // Condition: we're in your custom biome
         MaterialRules.MaterialCondition inGlowingCaves =
             MaterialRules.biome(ElixirsBiomes.GLOWING_MUSHROOM_CAVES);
 
         // Replace ALL stone (including deepslate) with your foliage in your biome
         MaterialRules.MaterialRule replaceAllStone = MaterialRules.sequence(
-                    //MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, GLOWING_FOLIAGE),
-                    //MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, GLOWING_FOLIAGE),
                     MaterialRules.condition(MaterialRules.surface(), GLOWING_FOLIAGE)
                 );
 

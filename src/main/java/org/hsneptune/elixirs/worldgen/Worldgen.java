@@ -14,7 +14,9 @@ public class Worldgen {
 
 
     public static void initialize() {
+
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, POTENT_ORE_GENERATION);
+
         Elixirs.LOGGER.info("Registering world generation");
     }
 }
