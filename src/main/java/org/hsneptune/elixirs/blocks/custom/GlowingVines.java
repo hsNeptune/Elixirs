@@ -1,9 +1,7 @@
 package org.hsneptune.elixirs.blocks.custom;
 
 import net.minecraft.block.TallPlantBlock;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -14,9 +12,7 @@ import org.hsneptune.elixirs.blocks.ElixirsBlocks;
 
 import com.mojang.serialization.MapCodec;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.CropBlock;
 
 public class GlowingVines extends TallPlantBlock {
     private static final MapCodec<GlowingVines> CODEC = createCodec(GlowingVines::new);

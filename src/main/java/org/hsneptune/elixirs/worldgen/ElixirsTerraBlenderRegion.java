@@ -4,31 +4,18 @@ import java.util.function.Consumer;
 
 import org.hsneptune.elixirs.worldgen.biome.ElixirsBiomes;
 
-import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Consumer;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import terrablender.worldgen.RegionUtils;
 import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
 import terrablender.api.VanillaParameterOverlayBuilder;
 import terrablender.api.ParameterUtils.*;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.util.VanillaBiomeParameters;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil.ParameterRange;
-import terrablender.api.Region;
-import terrablender.api.RegionType;
 
 public class ElixirsTerraBlenderRegion extends Region{
     public ElixirsTerraBlenderRegion(Identifier location, int weight) {

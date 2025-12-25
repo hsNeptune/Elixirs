@@ -2,12 +2,9 @@ package org.hsneptune.elixirs.mixin;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.DamageTypeTags;
-import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.effects.AffinityEffect;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.jetbrains.annotations.Nullable;

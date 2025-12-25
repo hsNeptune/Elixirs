@@ -5,7 +5,6 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.potion.Potions;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -16,8 +15,6 @@ import org.hsneptune.elixirs.items.VialElixirs;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
-
 import static org.hsneptune.elixirs.items.ElixirsItems.POTENT_DUST;
 
 public class ElixirsEffects {
@@ -29,6 +26,7 @@ public class ElixirsEffects {
 
     public static final RegistryEntry<StatusEffect> HEAD_AFFINITY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "head_affinity"), new HeadAffinity());
 
+    public static final RegistryEntry<StatusEffect> TEMPORAL_DISSONANCE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of("elixirs", "temporal_dissonance"), new TemporalDissonance());
     public static final List<ElixirItemRecipe> CUSTOM_ITEM_RECIPES = new ArrayList<>();
     public static final List<Item> ELIXIRS_INGREDIENTS = new ArrayList<>();
 

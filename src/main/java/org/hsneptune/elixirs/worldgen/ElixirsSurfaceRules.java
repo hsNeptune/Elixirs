@@ -20,8 +20,8 @@ public class ElixirsSurfaceRules {
 
         // Replace ALL stone (including deepslate) with your foliage in your biome
         MaterialRules.MaterialRule replaceAllStone = MaterialRules.sequence(
-                    MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, GLOWING_FOLIAGE),
-                    MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, GLOWING_FOLIAGE),
+                    //MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, GLOWING_FOLIAGE),
+                    //MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, GLOWING_FOLIAGE),
                     MaterialRules.condition(MaterialRules.surface(), GLOWING_FOLIAGE)
                 );
 

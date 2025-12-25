@@ -1,7 +1,5 @@
 package org.hsneptune.elixirs.mixin;
 
-import java.util.List;
-
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.hsneptune.elixirs.items.VialElixirs;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.block.entity.BrewingStandBlockEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.BrewingRecipeRegistry;
 import net.minecraft.util.collection.DefaultedList;

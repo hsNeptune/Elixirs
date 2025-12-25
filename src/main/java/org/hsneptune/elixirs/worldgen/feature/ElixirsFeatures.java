@@ -3,14 +3,8 @@ package org.hsneptune.elixirs.worldgen.feature;
 
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-
 import org.hsneptune.elixirs.Elixirs;
-import org.hsneptune.elixirs.worldgen.feature.GlowingMushroomFeature;
 
 public class ElixirsFeatures {
     public static final Identifier BIG_MUSHROOM_ID = Identifier.of("elixirs", "giant_glowing_mushroom");

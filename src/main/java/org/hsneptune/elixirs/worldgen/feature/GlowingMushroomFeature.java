@@ -1,21 +1,17 @@
 package org.hsneptune.elixirs.worldgen.feature;
 
+import java.util.*;
 import java.util.Random;
 
-import org.hsneptune.elixirs.Elixirs;
 import org.hsneptune.elixirs.blocks.ElixirsBlocks;
 import org.hsneptune.elixirs.worldgen.biome.ElixirsBiomes;
 
-import com.mojang.serialization.Codec;
 
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.FeaturePlacementContext;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class GlowingMushroomFeature extends Feature<DefaultFeatureConfig> {
@@ -55,6 +51,7 @@ public class GlowingMushroomFeature extends Feature<DefaultFeatureConfig> {
     }
 
 
+
     public boolean type1(BlockPos origin, StructureWorldAccess world) { 
         var random = new Random();
 
@@ -63,17 +60,17 @@ public class GlowingMushroomFeature extends Feature<DefaultFeatureConfig> {
 
         int height = random.nextInt(4, 7);
         int radius = 2;
-
-        boolean placed = false;
+		Map<BlockPos, BlockState> buffer = new LinkedHashMap<>();
 
         // Build stalk
         for (int y = 0; y < height; y++) {
             BlockPos pos = new BlockPos(origin.getX(), origin.getY() + y, origin.getZ());
             BlockState state = world.getBlockState(pos);
             if (state.isAir() || state.isReplaceable()) {
-                world.setBlockState(pos, stalk.getDefaultState(), Block.FORCE_STATE);
-                placed = true;
-            }
+				buffer.put(pos, stalk.getDefaultState());
+            } else {
+				return false;
+			}
         }
 
         // Build cap
@@ -84,14 +81,15 @@ public class GlowingMushroomFeature extends Feature<DefaultFeatureConfig> {
                     BlockPos capPos = capCenter.add(dx, 0, dz);
                     BlockState state = world.getBlockState(capPos);
                     if (state.isAir() || state.isReplaceable()) {
-                        world.setBlockState(capPos, cap.getDefaultState(), Block.FORCE_STATE);
-                        placed = true;
-                    }
+						buffer.put(capPos, cap.getDefaultState());
+                    } else {
+						return false;
+					}
                 }
             }
         }
 
-
-        return placed;
+		buffer.forEach((pos, block) -> {world.setBlockState(pos, block, Block.NOTIFY_ALL);});
+        return true;
     }
 }

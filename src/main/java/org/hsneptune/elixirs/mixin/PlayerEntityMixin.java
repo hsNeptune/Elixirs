@@ -1,6 +1,5 @@
 package org.hsneptune.elixirs.mixin;
 
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import org.hsneptune.elixirs.effects.ElixirsEffects;
 import org.spongepowered.asm.mixin.Mixin;

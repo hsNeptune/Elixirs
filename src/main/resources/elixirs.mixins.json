@@ -13,7 +13,8 @@
 		"TurtleMixin",
         "InGameHudMixin",
         "ChunkGenMixin",
-        "BoneMealItemMixin"
+        "BoneMealItemMixin",
+		"GameRenderMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

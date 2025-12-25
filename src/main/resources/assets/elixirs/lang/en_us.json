@@ -26,5 +26,8 @@
   "effect.elixirs.melee_affinity": "Melee Affinity",
   "text.elixirs.resistance": "Resist",
   "text.elixirs.weakness": "Weak",
-  "block.elixirs.glowing_vines": "Glowing Vines"
+  "block.elixirs.glowing_vines": "Glowing Vines",
+  "block.elixirs.glowing_mushroom": "Glowing Mushroom",
+  "effect.elixirs.temporal_dissonance": "Temporal Dissonance"
+
 }

@@ -1,6 +1,7 @@
  {
   "replace": false,
   "values": [
-    "elixirs:glowing_vines"
+    "elixirs:glowing_vines",
+	"elixirs:glowing_mushroom"
   ]
 }

@@ -3,7 +3,6 @@ package org.hsneptune.elixirs.worldgen;
 import org.hsneptune.elixirs.Elixirs;
 
 import net.minecraft.util.Identifier;
-import terrablender.api.Region;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 import terrablender.api.TerraBlenderApi;
