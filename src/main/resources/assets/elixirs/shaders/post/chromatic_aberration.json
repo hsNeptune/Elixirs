@@ -1,0 +1,20 @@
+
+{
+  "targets": [
+    "swap"
+  ],
+  "passes": [
+	{
+		"name": "blit",
+		"intarget": "minecraft:main",
+		"outtarget": "swap"
+	},
+	{
+		"name": "chromatic_aberration",
+		"intarget": "swap",
+		"outtarget": "minecraft:main"
+	}
+
+
+  ]
+}

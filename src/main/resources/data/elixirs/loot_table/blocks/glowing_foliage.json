@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"bonus_rolls": 0,
+			"entries": [
+				{
+					"type": "minecraft:alternatives",
+					"children": [
+						{
+							"type": "minecraft:item",
+							"conditions": [
+								{
+									"condition": "minecraft:match_tool",
+									"predicate": {
+										"items": "minecraft:shears"
+									}
+								}
+							],
+							"name": "elixirs:glowing_vines"
+						}
+					]
+				}
+			],
+			"rolls": 1
+		}
+	]
+}

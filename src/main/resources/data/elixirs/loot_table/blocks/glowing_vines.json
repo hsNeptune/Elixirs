@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "elixirs:glowing_vines",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:shears"
+			  }
+			},
+			{
+				"condition": "minecraft:survives_explosion"
+			}
+          ]
+        }
+      ]
+    }
+  ]
+}
