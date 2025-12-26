@@ -19,17 +19,11 @@ import terrablender.api.ParameterUtils.*;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil.ParameterRange;
 
 public class ElixirsTerraBlenderRegion extends Region {
+	private final List<ElixirsBiomes> biomes;
 
-	private static final List<MultiNoiseUtil.NoiseHypercube> conditions_GLOWING_MUSHROOM =  
-        new ParameterUtils.ParameterPointListBuilder().temperature(Temperature.span(Temperature.COOL, Temperature.FROZEN))
-            .humidity(Humidity.FULL_RANGE)
-            .continentalness(Continentalness.FULL_RANGE)
-            .erosion(Erosion.EROSION_0, Erosion.EROSION_1)
-            .depth(ParameterRange.of(0.75f, 1f))
-            .weirdness(ParameterRange.of(0, 1)).build();
-
-    public ElixirsTerraBlenderRegion(Identifier location, int weight) {
-        super(location, RegionType.OVERWORLD, weight);
+    public ElixirsTerraBlenderRegion(Identifier location, RegionType rType, int weight, List<ElixirsBiomes> biomes) {
+        super(location, rType, weight);
+		this.biomes = biomes;
     }
 
     @Override
@@ -37,7 +31,9 @@ public class ElixirsTerraBlenderRegion extends Region {
 
         VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
 
-        conditions_GLOWING_MUSHROOM.forEach(point -> builder.add(point, ElixirsBiomes.GLOWING_MUSHROOM_CAVES));
+		for (ElixirsBiomes biome : biomes) {
+			biome.conditions().forEach(point -> builder.add(point, biome.key()));
+		}
 
         builder.build().forEach(mapper);
     }

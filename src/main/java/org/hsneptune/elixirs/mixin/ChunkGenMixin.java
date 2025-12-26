@@ -17,6 +17,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 
 import org.hsneptune.elixirs.blocks.*;
 import org.hsneptune.elixirs.worldgen.biome.ElixirsBiomes;
+import org.hsneptune.elixirs.worldgen.biome.GlowingMushroomBiome;
 
 import net.minecraft.block.*;
 
@@ -45,7 +46,7 @@ public abstract class ChunkGenMixin {
                     // Get the biome at this block position
                     RegistryEntry<Biome> biome = world.getBiome(pos);
 
-                    if (biome.matchesKey(ElixirsBiomes.GLOWING_MUSHROOM_CAVES)) {
+                    if (biome.matchesKey(new GlowingMushroomBiome().key())) {
                         if (state.isOf(Blocks.STONE) || state.isOf(Blocks.DEEPSLATE)) {
                             world.setBlockState(pos, foliage.getDefaultState(), Block.FORCE_STATE);
                         }

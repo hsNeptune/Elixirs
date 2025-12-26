@@ -1,15 +1,22 @@
 package org.hsneptune.elixirs.worldgen.biome;
 
-import net.minecraft.registry.Registerable;
+import java.util.List;
+
+import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
+import net.minecraft.world.gen.surfacebuilder.MaterialRules;
+import terrablender.api.RegionType;
 
-public class ElixirsBiomes {
-    public static final RegistryKey<Biome> GLOWING_MUSHROOM_CAVES = RegistryKey.of(RegistryKeys.BIOME, Identifier.of("elixirs", "glowing_mushroom")); 
+public interface ElixirsBiomes {
 
-    public static void bootstrap(Registerable<Biome> context) {
+	public RegistryKey<Biome> key();
+	public RegionType type();
+	public MaterialRules.MaterialRule rule();
+	public List<MultiNoiseUtil.NoiseHypercube> conditions();
+
+    public static MaterialRules.MaterialRule makeStateRule(Block block) {
+        return MaterialRules.block(block.getDefaultState());
     }
-
 }

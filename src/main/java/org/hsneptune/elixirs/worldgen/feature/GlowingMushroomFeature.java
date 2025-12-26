@@ -5,7 +5,7 @@ import java.util.Random;
 
 import org.hsneptune.elixirs.blocks.ElixirsBlocks;
 import org.hsneptune.elixirs.worldgen.biome.ElixirsBiomes;
-
+import org.hsneptune.elixirs.worldgen.biome.GlowingMushroomBiome;
 
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +28,7 @@ public class GlowingMushroomFeature extends Feature<DefaultFeatureConfig> {
         BlockState belowState = world.getBlockState(belowPos);
     
         try {
-            if (!world.getBiome(belowPos).matchesKey(ElixirsBiomes.GLOWING_MUSHROOM_CAVES)) {
+            if (!world.getBiome(belowPos).matchesKey(new GlowingMushroomBiome().key())) {
                 return false;
             }
         } catch (Exception e) {
