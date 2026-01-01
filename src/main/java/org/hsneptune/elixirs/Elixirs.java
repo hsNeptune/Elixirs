@@ -7,6 +7,7 @@ import org.hsneptune.elixirs.items.ElixirsGroup;
 import org.hsneptune.elixirs.items.ElixirsItems;
 import org.hsneptune.elixirs.tag.ElixirsTags;
 import org.hsneptune.elixirs.worldgen.Worldgen;
+import org.hsneptune.elixirs.worldgen.dimension.ElixirsDimensions;
 import org.hsneptune.elixirs.worldgen.feature.ElixirsFeatures;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,7 @@ public class Elixirs implements ModInitializer {
 		Worldgen.initialize();
 		ElixirsGroup.registerItemGroup();
         ElixirsFeatures.initialize();
+		ElixirsDimensions.initialize();
 
 		LOGGER.info("Hello Fabric world!");
 	}
