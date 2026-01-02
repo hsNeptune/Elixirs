@@ -7,7 +7,7 @@ import org.hsneptune.elixirs.items.ElixirsGroup;
 import org.hsneptune.elixirs.items.ElixirsItems;
 import org.hsneptune.elixirs.tag.ElixirsTags;
 import org.hsneptune.elixirs.worldgen.Worldgen;
-import org.hsneptune.elixirs.worldgen.dimension.ElixirsDimensions;
+import org.hsneptune.elixirs.dimension.ElixirsDimensions;
 import org.hsneptune.elixirs.worldgen.feature.ElixirsFeatures;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

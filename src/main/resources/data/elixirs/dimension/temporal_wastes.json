@@ -1,25 +1,11 @@
 {
-  "type": "elixirs:temporal_wastes_type",
+  "type": "minecraft:overworld",
   "generator": {
     "type": "minecraft:noise",
+    "settings": "elixirs:temporal_wastes_settings",
     "biome_source": {
-      "type": "minecraft:multi_noise",
-      "biomes": [
-
-        {
-          "biome": "elixirs:glowing_mushroom",
-          "parameters": {
-            "temperature": 0.0,
-            "humidity": 0.0,
-            "continentalness": 0.0,
-            "erosion": 0.0,
-            "weirdness": 0.0,
-            "depth": 0.0,
-            "offset": 0.0
-          }
-        }
-      ]
-    },
-    "settings": "minecraft:caves"
+      "type": "minecraft:fixed",
+      "biome": "elixirs:glowing_mushroom"
+    }
   }
 }

@@ -8,15 +8,15 @@
 
   "coordinate_scale": 1.0,
   "has_skylight": true,
-  "has_ceiling": false,
-  "ambient_light": 1.0,
+  "has_ceiling": true,
+  "ambient_light": 0,
 
   "respawn_anchor_works": true,
   "bed_works": true,
 
-  "min_y": -64,
-  "height": 300,
-  "logical_height": 300,
+  "min_y": 0,
+  "height": 256,
+  "logical_height": 256,
 
   "infiniburn": "#minecraft:infiniburn_overworld",
   "effects": "minecraft:overworld",

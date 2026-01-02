@@ -1,21 +1,13 @@
-package org.hsneptune.elixirs.worldgen.dimension;
+package org.hsneptune.elixirs.dimension;
 
-import net.minecraft.world.biome.Biome;
 import org.hsneptune.elixirs.Elixirs;
-import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.DimensionTypes;
 import org.hsneptune.elixirs.armor.turtle.TurtleArmor;
-
-import java.awt.*;
-import java.util.OptionalLong;
 
 import static org.hsneptune.elixirs.Elixirs.LOGGER;
 
