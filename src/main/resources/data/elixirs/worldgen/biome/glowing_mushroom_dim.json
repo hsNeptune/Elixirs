@@ -1,0 +1,96 @@
+{
+  "temperature": 0.8,
+  "downfall": 0.4,
+  "has_precipitation": true,
+  "temperature_modifier": "none",
+  "creature_spawn_probability": 0.44,
+  "effects": {
+    "sky_color": 7907327,
+    "fog_color": 12638463,
+    "water_color": 2047382,
+    "water_fog_color": 1052830,
+    "grass_color": 33023,
+    "foliage_color": 221,
+    "music": {
+      "sound": "minecraft:ambient.cave",
+      "min_delay": 0,
+      "max_delay": 0,
+      "replace_current_music": true
+    },
+    "music_volume": 15,
+    "particle": {
+      "options": {
+        "type": "minecraft:glow"
+      },
+      "probability": 0.05
+    }
+  },
+  "spawners": {
+    "axolotls": [
+      {
+        "type": "minecraft:axolotl",
+        "weight": 4,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
+    "water_creature": [
+      {
+        "type": "minecraft:glow_squid",
+        "weight": 2,
+        "minCount": 2,
+        "maxCount": 5
+      }
+    ]
+  },
+  "spawn_costs": {
+    "minecraft:glow_squid": {
+      "energy_budget": 4,
+      "charge": 4
+    }
+  },
+  "carvers": {
+    "air": [
+      "minecraft:canyon",
+      "minecraft:cave",
+      "minecraft:cave_extra_underground"
+    ]
+  },
+  "features": [
+    [],
+    [],
+    [
+      "minecraft:amethyst_geode",
+      "elixirs:giant_glowing_mushroom"
+    ],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_medium",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_copper",
+      "minecraft:underwater_magma"
+    ],
+    [],
+    [
+      "minecraft:spring_water"
+    ],
+    [
+      "elixirs:glowing_vines_generation"
+    ],
+    []
+  ]}

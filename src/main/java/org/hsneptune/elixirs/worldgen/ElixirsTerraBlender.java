@@ -7,6 +7,7 @@ import org.hsneptune.elixirs.worldgen.biome.ElixirsBiomes;
 import org.hsneptune.elixirs.worldgen.biome.GlowingMushroomBiome;
 
 import net.minecraft.util.Identifier;
+import org.hsneptune.elixirs.worldgen.biome.GlowingMushroomBiomeDim;
 import terrablender.api.RegionType;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;

@@ -5,7 +5,7 @@
     "settings": "elixirs:temporal_wastes_settings",
     "biome_source": {
       "type": "minecraft:fixed",
-      "biome": "elixirs:glowing_mushroom"
+      "biome": "elixirs:glowing_mushroom_dim"
     }
   }
 }
