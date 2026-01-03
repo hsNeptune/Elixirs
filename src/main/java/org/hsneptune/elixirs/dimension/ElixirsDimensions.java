@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionType;
 import org.hsneptune.elixirs.armor.turtle.TurtleArmor;
+import org.hsneptune.elixirs.worldgen.biome.GlowingMushroomBiomeDim;
 
 import static org.hsneptune.elixirs.Elixirs.LOGGER;
 
@@ -20,7 +21,7 @@ public class ElixirsDimensions {
             Identifier.of(Elixirs.MOD_ID, "temporal_wastes_type"));
 
     public static void initialize() {
-        TurtleArmor.initialize();
+        GlowingMushroomBiomeDim.initialize();
         LOGGER.info("Dimensions initialized!");
     }
 }

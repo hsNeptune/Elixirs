@@ -7,6 +7,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import org.hsneptune.elixirs.blocks.ElixirsBlocks;
+import org.hsneptune.elixirs.Elixirs;
 import terrablender.api.ParameterUtils;
 import terrablender.api.RegionType;
 
@@ -53,7 +54,12 @@ public class GlowingMushroomBiomeDim implements ElixirsBiomes{
 
     @Override
     public RegionType type() {
-
         return null;
     }
+
+    public static void initialize(){
+        Elixirs.LOGGER.info("Glowing Mushrooms Dim Edition Initialized!");
+    }
+
+
 }
